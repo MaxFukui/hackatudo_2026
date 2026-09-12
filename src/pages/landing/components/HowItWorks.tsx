@@ -16,7 +16,7 @@ const STEPS: { stage: PetStage; title: string; text: string }[] = [
   {
     stage: 3,
     title: 'O monstrinho evolui',
-    text: 'Do ovinho à coruja sábia. Se a criança some, o monstrinho sente falta — e ela quer voltar para cuidar dele.',
+    text: 'Do ovinho ao giz brilhante. Se a criança some, o monstrinho sente falta — e ela quer voltar para cuidar dele.',
   },
 ]
 

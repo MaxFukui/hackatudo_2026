@@ -1,3 +1,4 @@
+import { Logo } from '@/components/brand/Logo'
 import { AppShell, LogoutButton, type NavItem } from '@/components/layout'
 import { Spinner } from '@/components/ui'
 import { useAsync } from '@/hooks/useAsync'
@@ -32,7 +33,7 @@ export function TeacherPage() {
   const classId = teacher.classes[0]
 
   return (
-    <AppShell brand="gizzi" topbarActions={<LogoutButton />} userName={teacher.name} nav={NAV} active={tab} onNavigate={setTab}>
+    <AppShell brand={<Logo height={28} />} topbarActions={<LogoutButton />} userName={teacher.name} nav={NAV} active={tab} onNavigate={setTab}>
       {tab === 'overview' && <OverviewTab />}
       {tab === 'students' && <StudentsTab classId={classId} />}
       {tab === 'activities' && <ActivitiesTab teacherId={teacher.id} />}

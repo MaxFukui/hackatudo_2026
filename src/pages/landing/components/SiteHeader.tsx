@@ -1,4 +1,4 @@
-import { Pet } from './Pet'
+import { Logo } from '@/components/brand/Logo'
 
 const LINKS = [
   { href: '#como-funciona', label: 'Como funciona' },
@@ -10,9 +10,8 @@ export function SiteHeader() {
   return (
     <header className="border-b border-border bg-surface">
       <div className="mx-auto flex h-topbar max-w-content items-center justify-between gap-4 px-4 md:px-8">
-        <a href="/" className="flex items-center gap-2 font-display text-h2 font-semibold text-fg no-underline">
-          <Pet stage={3} size={32} />
-          gizzi
+        <a href="/" aria-label="gizzi, página inicial" className="flex items-center">
+          <Logo height={32} />
         </a>
         <nav aria-label="Principal" className="flex items-center gap-1">
           {LINKS.map((link) => (

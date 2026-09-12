@@ -8,7 +8,7 @@ export const FAQ = [
   {
     question: 'Como o monstrinho evolui?',
     answer:
-      'Presença, participação, lições entregues e notas acima da média viram pontinhos de experiência (XP). Com XP suficiente, o ovinho racha, o filhote nasce e depois vira uma coruja sábia.',
+      'Presença, participação, lições entregues e notas acima da média viram pontinhos de experiência (XP). Com XP suficiente, o ovinho racha, o gizinho nasce e depois vira um giz brilhante.',
   },
   {
     question: 'Os alunos precisam de celular?',

@@ -26,6 +26,7 @@ export function structuredData(siteUrl: string): object[] {
       '@type': 'WebApplication',
       name: 'gizzi',
       url: `${siteUrl}/`,
+      image: `${siteUrl}/logo-light.svg`,
       applicationCategory: 'EducationalApplication',
       operatingSystem: 'Web',
       inLanguage: 'pt-BR',

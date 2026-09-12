@@ -10,7 +10,7 @@ interface PetProps {
   className?: string
 }
 
-// Monstrinho coruja em SVG puro: leve, nítido em qualquer tela e sem imagem externa.
+// Monstrinho de giz — o mascote do logo (public/logo-mark.svg) — em SVG puro.
 // Cores só da paleta do modelo (tokens.css).
 export function Pet({ stage, size = 200, wiggleKey, className = '' }: PetProps) {
   return (
@@ -26,8 +26,8 @@ export function Pet({ stage, size = 200, wiggleKey, className = '' }: PetProps) 
       <g key={wiggleKey} className={wiggleKey ? 'pet-wiggle' : undefined}>
         {stage === 0 && <EggShape />}
         {stage === 1 && <CrackingEgg />}
-        {stage === 2 && <Owlet />}
-        {stage === 3 && <Owl />}
+        {stage === 2 && <BabyChalk />}
+        {stage === 3 && <Chalk />}
       </g>
     </svg>
   )
@@ -42,7 +42,7 @@ function EggShape() {
       <circle cx="76" cy="92" r="9" className="fill-azul-claro" />
       <circle cx="122" cy="76" r="6" className="fill-rosa-esc" />
       <circle cx="118" cy="138" r="11" className="fill-azul-claro" />
-      <circle cx="80" cy="150" r="6" className="fill-rosa-esc" />
+      <circle cx="80" cy="150" r="6" className="fill-laranja" />
     </>
   )
 }
@@ -63,61 +63,50 @@ function CrackingEgg() {
   )
 }
 
-function Eyes({ cy, r, dx }: { cy: number; r: number; dx: number }) {
+// Gizinho recém-nascido: toquinho curto saindo da casca, os dois olhos abertos.
+function BabyChalk() {
   return (
     <>
-      {[100 - dx, 100 + dx].map((cx) => (
-        <g key={cx}>
-          <circle cx={cx} cy={cy} r={r} className={`fill-branco ${LINE}`} strokeWidth="4" />
-          <circle cx={cx + 2} cy={cy + 2} r={r * 0.45} className="fill-escuro" />
-          <circle cx={cx + 5} cy={cy - 3} r={r * 0.15} className="fill-branco" />
-        </g>
-      ))}
-    </>
-  )
-}
-
-function Beak({ cy }: { cy: number }) {
-  return (
-    <polygon points={`92,${cy} 108,${cy} 100,${cy + 13}`} className={`fill-amarelo ${LINE}`} strokeWidth="3" strokeLinejoin="round" />
-  )
-}
-
-function Owlet() {
-  return (
-    <>
-      <circle cx="100" cy="98" r="50" className={`fill-laranja ${LINE}`} strokeWidth="5" />
-      <path d="M68 60 L72 40 L88 52 Z" className={`fill-laranja ${LINE}`} strokeWidth="4" strokeLinejoin="round" />
-      <path d="M132 60 L128 40 L112 52 Z" className={`fill-laranja ${LINE}`} strokeWidth="4" strokeLinejoin="round" />
-      <Eyes cy={90} r={16} dx={20} />
-      <Beak cy={104} />
-      {/* casca por cima do corpo */}
+      <g transform="rotate(14 100 100)">
+        <rect x="64" y="42" width="72" height="116" rx="36" className="fill-laranja" />
+        <ellipse cx="100" cy="64" rx="26" ry="17" className="fill-rosa-claro" />
+      </g>
+      <g className="stroke-branco" fill="none" strokeLinecap="round" strokeWidth="6">
+        <ellipse cx="86" cy="104" rx="4" ry="6" className="fill-branco" strokeWidth="3" />
+        <ellipse cx="112" cy="110" rx="4" ry="6" className="fill-branco" strokeWidth="3" />
+        <path d="M88 124 Q98 134 110 128" />
+      </g>
+      {/* casca por cima */}
       <path
-        d="M42 124 L58 112 L74 126 L90 112 L106 126 L122 112 L138 126 L158 116 Q162 186 100 186 Q38 186 42 124 Z"
+        d="M42 130 L58 118 L74 132 L90 118 L106 132 L122 118 L138 132 L158 122 Q162 188 100 188 Q38 188 42 130 Z"
         className={`fill-branco ${LINE}`}
         strokeWidth="5"
         strokeLinejoin="round"
       />
-      <circle cx="118" cy="156" r="9" className="fill-azul-claro" />
-      <circle cx="78" cy="166" r="5" className="fill-rosa-esc" />
+      <circle cx="118" cy="160" r="9" className="fill-azul-claro" />
+      <circle cx="78" cy="168" r="5" className="fill-rosa-esc" />
     </>
   )
 }
 
-function Owl() {
+// Giz brilhante: o mascote do logo, piscando, com as faíscas.
+function Chalk() {
   return (
-    <>
-      <ellipse cx="46" cy="124" rx="16" ry="38" transform="rotate(-14 46 124)" className={`fill-accent-hover ${LINE}`} strokeWidth="5" />
-      <ellipse cx="154" cy="124" rx="16" ry="38" transform="rotate(14 154 124)" className={`fill-accent-hover ${LINE}`} strokeWidth="5" />
-      <path d="M56 70 L58 26 L90 52 Z" className={`fill-laranja ${LINE}`} strokeWidth="5" strokeLinejoin="round" />
-      <path d="M144 70 L142 26 L110 52 Z" className={`fill-laranja ${LINE}`} strokeWidth="5" strokeLinejoin="round" />
-      <ellipse cx="100" cy="112" rx="58" ry="70" className={`fill-laranja ${LINE}`} strokeWidth="5" />
-      <ellipse cx="100" cy="138" rx="34" ry="36" className="fill-amarelo-claro" />
-      <path d="M84 128 q6 6 12 0 M104 128 q6 6 12 0 M94 146 q6 6 12 0" fill="none" className="stroke-escuro/40" strokeWidth="3" strokeLinecap="round" />
-      <Eyes cy={90} r={21} dx={25} />
-      <Beak cy={104} />
-      <path d="M80 180 l-6 8 M86 181 l0 9 M92 180 l6 8" className="stroke-accent-hover" strokeWidth="4" strokeLinecap="round" />
-      <path d="M108 180 l-6 8 M114 181 l0 9 M120 180 l6 8" className="stroke-accent-hover" strokeWidth="4" strokeLinecap="round" />
-    </>
+    <g transform="translate(100 107) scale(0.44) translate(-333 -275)">
+      <g fill="none" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M242 116 L264 170" className="stroke-rosa-esc" strokeWidth="42" />
+        <path d="M164 182 L220 212" className="stroke-azul-esc" strokeWidth="44" />
+        <path d="M168 279 L204 267" className="stroke-azul-claro" strokeWidth="40" />
+      </g>
+      <g transform="rotate(32 362 275)">
+        <rect x="277" y="105" width="170" height="340" rx="78" className="fill-laranja" />
+        <ellipse cx="362" cy="165" rx="62" ry="40" className="fill-rosa-claro" />
+      </g>
+      <g fill="none" className="stroke-branco" strokeLinecap="round" strokeWidth="13">
+        <ellipse cx="318" cy="263" rx="9" ry="13" className="fill-branco" strokeWidth="8" />
+        <path d="M370 287 Q390 262 410 287" />
+        <path d="M314 307 Q326 336 366 320" />
+      </g>
+    </g>
   )
 }

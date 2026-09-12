@@ -1,3 +1,4 @@
+import { Logo } from '@/components/brand/Logo'
 import { AppShell, LogoutButton, PageHeader, type NavItem } from '@/components/layout'
 import { useTab } from '@/hooks/useTab'
 import { COORDINATOR_CLASSES, COORDINATOR_SUMMARY } from './coordinatorData'
@@ -25,7 +26,7 @@ export function DashboardPage() {
   const [tab, setTab] = useTab(TABS, 'overview')
 
   return (
-    <AppShell brand="gizzi" topbarActions={<LogoutButton />} userName="Direção" nav={NAV} active={tab} onNavigate={setTab}>
+    <AppShell brand={<Logo height={28} />} topbarActions={<LogoutButton />} userName="Direção" nav={NAV} active={tab} onNavigate={setTab}>
       {tab === 'overview' && (
         <>
           <PageHeader

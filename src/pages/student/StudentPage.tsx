@@ -1,3 +1,4 @@
+import { Logo } from '@/components/brand/Logo'
 import { AppShell, LogoutButton, type NavItem } from '@/components/layout'
 import { Spinner } from '@/components/ui'
 import { useAsync } from '@/hooks/useAsync'
@@ -30,7 +31,7 @@ export function StudentPage() {
   if (loading || !student) return <Spinner />
 
   return (
-    <AppShell brand="gizzi" topbarActions={<LogoutButton />} userName={student.name} nav={NAV} active={tab} onNavigate={setTab}>
+    <AppShell brand={<Logo height={28} />} topbarActions={<LogoutButton />} userName={student.name} nav={NAV} active={tab} onNavigate={setTab}>
       {tab === 'home' && <HomeTab student={student} />}
       {tab === 'activities' && <ActivitiesTab student={student} />}
       {tab === 'performance' && <PerformanceTab student={student} />}
