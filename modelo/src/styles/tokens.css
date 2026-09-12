@@ -1,0 +1,172 @@
+/*
+  TOKENS — o único arquivo que muda quando a paleta mudar.
+  ------------------------------------------------------------------
+  Tudo abaixo vira classe do Tailwind v4:
+    --color-x   → bg-x  text-x  border-x  ring-x  fill-x
+    --radius-x  → rounded-x
+    --shadow-x  → shadow-x
+    --font-x    → font-x
+    --text-x    → text-x (com line-height junto)
+
+  Paleta oficial (11 cores) está em "PALETA". Os tokens semânticos apontam
+  para ela. Onde a paleta não tem contraste para texto (pastel não segura
+  letra), há um tom DERIVADO da mesma cor, marcado "derivado" e testado
+  contra WCAG AA (≥ 4,5:1).
+*/
+@theme {
+  /* ============ PALETA (como recebida) ============ */
+  --color-branco: #FFFFFF;
+  --color-verde-agua: #D8F1DD;
+  --color-verde-esc: #C3DAB9;
+  --color-rosa-claro: #F4D4E4;
+  --color-rosa-esc: #E0B6CB;
+  --color-azul-claro: #A6CBDE;
+  --color-azul-esc: #88AEC2;
+  --color-amarelo-claro: #FFFED4;
+  --color-amarelo: #FFFCAD;
+  --color-laranja: #ED9458;
+  --color-escuro: #4A4B52;
+
+  /* ============ COR SEMÂNTICA: use ESTES nas páginas ============ */
+
+  /* Neutros: escala derivada do "escuro" (#4A4B52), do quase-preto ao quase-branco. */
+  --color-ink-950: #1F2024;
+  --color-ink-900: #2E2F35;
+  --color-ink-800: #4A4B52;   /* = escuro */
+  --color-ink-600: #6B6C74;
+  --color-ink-400: #8A8B93;        /* só para borda/ícone decorativo: não passa como texto (3,4:1) */
+  --color-ink-300: #C9C9CE;
+  --color-ink-200: #E2E2E5;
+  --color-ink-100: #EFEFF1;
+  --color-ink-50: #F7F7F5;
+
+  /* Superfícies e texto */
+  --color-canvas: #F7F7F5;         /* fundo da página: branco levemente quente, para o card branco aparecer */
+  --color-surface: #FFFFFF;        /* card, topbar, sidebar, modal (= branco) */
+  --color-surface-muted: #EFEFF1;  /* trilho, hover de linha, área secundária */
+  --color-border: #E2E2E5;
+  --color-border-strong: #C9C9CE;  /* input, botão secundário */
+  --color-fg: #2E2F35;             /* texto principal (escuro, um degrau mais fechado — 13:1) */
+  --color-fg-muted: #4A4B52;       /* texto secundário (= escuro — 8,7:1) */
+  --color-fg-subtle: #6B6C74;      /* placeholder, ícone inativo, rótulo terciário (5,2:1 — ainda legível) */
+
+  /* Ação principal = ESCURO. Botão primário, link, seleção. Calmo; deixa o laranja livre para destacar. */
+  --color-primary: #4A4B52;
+  --color-primary-hover: #2E2F35;
+  --color-primary-fg: #FFFFFF;
+  --color-primary-soft: #A6CBDE;     /* = azul claro: aba ativa, item de menu, avatar, chip */
+  --color-primary-soft-fg: #2E2F35;
+
+  /* Destaque = LARANJA. Pontos, streak, recompensa, CTA da área do aluno. Uma por tela. */
+  --color-accent: #ED9458;
+  --color-accent-hover: #E0813F;     /* derivado */
+  --color-accent-fg: #1F2024;        /* branco sobre laranja não passa (2,6:1); escuro passa (7:1) */
+  --color-accent-soft: #FBDFCB;      /* derivado: laranja a 30% sobre branco */
+  --color-accent-soft-fg: #8A4B1C;   /* derivado */
+
+  /* Estados: fundo suave vem da paleta; o tom forte (para texto e ícone) é derivado da mesma cor. */
+  --color-success: #3F6B36;          /* derivado do verde */
+  --color-success-soft: #D8F1DD;     /* = verde água */
+  --color-success-soft-fg: #2F5A2A;  /* derivado */
+
+  --color-warning: #A3561A;          /* derivado do laranja */
+  --color-warning-soft: #FFFCAD;     /* = amarelo */
+  --color-warning-soft-fg: #7A4A12;  /* derivado */
+
+  --color-danger: #A8385F;           /* derivado do rosa */
+  --color-danger-soft: #F4D4E4;      /* = rosa claro */
+  --color-danger-soft-fg: #7A2A48;   /* derivado */
+
+  --color-info: #3F6E88;             /* derivado do azul */
+  --color-info-soft: #88AEC2;        /* = azul esc. */
+  --color-info-soft-fg: #1F3D4F;     /* derivado */
+
+  /* Foco de teclado: laranja, visível sobre qualquer fundo da paleta. */
+  --color-focus: #ED9458;
+
+  /* ============ TIPOGRAFIA ============ */
+
+  /*
+    Três faces, cada uma com um papel. Carregadas no index.html (Google Fonts).
+
+    sans    Atkinson Hyperlegible Next — interface e texto, em todas as áreas.
+            Desenhada pelo Braille Institute para baixa visão: I/l/1, O/0 e b/d/p/q
+            não se confundem. Serve a criança que está aprendendo a ler e o
+            diretor lendo tabela. Pesos: 400 texto · 500 rótulo/botão · 600/700 título.
+
+    display Fredoka — só títulos e números de destaque na área do aluno e na landing.
+            Arredondada, amigável, ainda legível. Nunca em texto corrido, nunca
+            nas áreas do professor/diretor. Pesos: 500 · 600 · 700.
+
+    mono    Atkinson Hyperlegible Mono — código e identificadores. Raro na UI.
+  */
+  --font-sans: "Atkinson Hyperlegible Next", "Atkinson Hyperlegible", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-display: "Fredoka", "Atkinson Hyperlegible Next", ui-rounded, ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Atkinson Hyperlegible Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+
+  /*
+    Escala (tamanho / altura de linha / tracking). Só estas: nada de text-[13px].
+    Mínimo para o aluno ler: body (16px). caption (12px) é só para rótulo em
+    dashboard de adulto — nunca em texto que a criança precisa ler.
+  */
+  --text-display: 2.5rem;    --text-display--line-height: 1.1;  --text-display--letter-spacing: -0.01em;
+  --text-h1: 1.5rem;         --text-h1--line-height: 1.25;      --text-h1--letter-spacing: -0.01em;
+  --text-h2: 1.125rem;       --text-h2--line-height: 1.35;
+  --text-h3: 0.9375rem;      --text-h3--line-height: 1.4;
+  --text-reading: 1.0625rem; --text-reading--line-height: 1.65; /* texto que o aluno lê: enunciado, explicação */
+  --text-body: 1rem;         --text-body--line-height: 1.55;
+  --text-small: 0.875rem;    --text-small--line-height: 1.45;
+  --text-caption: 0.75rem;   --text-caption--line-height: 1.4;   --text-caption--letter-spacing: 0.01em;
+  --text-numeral: 2rem;      --text-numeral--line-height: 1.1;   --text-numeral--letter-spacing: -0.01em;
+
+  /* ============ FORMA ============ */
+
+  /* Hierarquia de raio: quanto maior o elemento, maior o raio. Nunca "tudo redondo". */
+  --radius-sm: 0.25rem;   /* checkbox, tag pequena, kbd */
+  --radius-md: 0.5rem;    /* botão, input, item de lista */
+  --radius-lg: 0.75rem;   /* card, modal, painel */
+  --radius-full: 9999px;  /* avatar, pill, barra de progresso */
+
+  /* Elevação: borda resolve quase tudo. Sombra só em coisa que flutua. */
+  --shadow-raised: 0 1px 2px rgb(9 9 11 / 0.05);
+  --shadow-overlay: 0 12px 32px -8px rgb(9 9 11 / 0.18), 0 2px 6px rgb(9 9 11 / 0.06);
+
+  /* ============ LAYOUT ============ */
+  --width-content: 72rem;   /* 1152px: largura máxima do conteúdo */
+  --container-reading: 60ch; /* max-w-reading: largura de linha para texto que o aluno lê */
+  --width-sidebar: 15rem;   /* 240px */
+  --height-topbar: 3.5rem;  /* 56px */
+
+  /* ============ MOVIMENTO ============ */
+
+  /*
+    Duração pelo tamanho do que muda; curva pelo tipo de mudança.
+      fast   120ms  cor, opacidade, escala de toque (hover, active, foco)
+      base   180ms  troca de estado no lugar (aba, seleção, barra)
+      enter  240ms  algo que aparece (card, toast, seção)
+      exit   160ms  algo que some — sempre mais rápido do que entrou
+      slow   320ms  folha do modal, barra de progresso, deslocamento grande
+    Só opacity e transform animam. Nunca width/height/margin.
+  */
+  --duration-fast: 120ms;
+  --duration-base: 180ms;
+  --duration-enter: 240ms;
+  --duration-exit: 160ms;
+  --duration-slow: 320ms;
+
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);     /* muda no lugar */
+  --ease-enter: cubic-bezier(0.05, 0.7, 0.1, 1);   /* chega rápido, assenta devagar */
+  --ease-exit: cubic-bezier(0.3, 0, 0.8, 0.15);    /* sai sem cerimônia */
+  --ease-spring: cubic-bezier(0.34, 1.4, 0.64, 1); /* passa um pouco e volta: recompensa, seleção */
+
+  /* Animações prontas (keyframes em base.css). animate-<nome>. */
+  --animate-rise: rise var(--duration-enter) var(--ease-enter) both;
+  --animate-fade-in: fade-in var(--duration-enter) var(--ease-enter) both;
+  --animate-fade-out: fade-out var(--duration-exit) var(--ease-exit) both;
+  --animate-scale-in: scale-in var(--duration-enter) var(--ease-enter) both;
+  --animate-scale-out: scale-out var(--duration-exit) var(--ease-exit) both;
+  --animate-sheet-up: sheet-up var(--duration-slow) var(--ease-enter) both;
+  --animate-sheet-down: sheet-down var(--duration-exit) var(--ease-exit) both;
+  --animate-pop: pop var(--duration-slow) var(--ease-spring) both;
+  --animate-shimmer: shimmer 1.6s linear infinite;
+}
