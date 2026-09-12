@@ -1,3 +1,4 @@
+import { Logo } from '@/components/brand/Logo'
 import { AppShell, LogoutButton, PageHeader, type NavItem } from '@/components/layout'
 import { Spinner } from '@/components/ui'
 import { useAsync } from '@/hooks/useAsync'
@@ -27,7 +28,7 @@ export function DashboardPage() {
   if (loading || !data) return <Spinner />
 
   return (
-    <AppShell brand="gizzi" topbarActions={<LogoutButton />} userName="Direção" nav={NAV} active={tab} onNavigate={setTab}>
+    <AppShell brand={<Logo height={28} />} topbarActions={<LogoutButton />} userName="Direção" nav={NAV} active={tab} onNavigate={setTab}>
       {tab === 'overview' && (
         <>
           <PageHeader title="Escola Municipal Exemplo" description="Campo Grande · MS · 3º bimestre de 2026" />

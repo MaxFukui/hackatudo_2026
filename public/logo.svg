@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="120 80 1370 370" role="img" aria-label="gizzi">
+  <title>gizzi</title>
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <!-- sparks -->
+    <path d="M242 116 L264 170" stroke="#E0B6CB" stroke-width="42"/>
+    <path d="M164 182 L220 212" stroke="#FFFCAD" stroke-width="44"/>
+    <path d="M168 279 L204 267" stroke="#A6CBDE" stroke-width="40"/>
+  </g>
+
+  <!-- mascot -->
+  <g transform="rotate(32 362 275)">
+    <rect x="277" y="105" width="170" height="340" rx="78" fill="#ED9458"/>
+    <ellipse cx="362" cy="165" rx="62" ry="40" fill="#F4D4E4"/>
+  </g>
+  <g fill="none" stroke="#FFFFFF" stroke-linecap="round" stroke-width="13">
+    <ellipse cx="318" cy="263" rx="9" ry="13" fill="#FFFFFF" stroke-width="8"/>
+    <path d="M370 287 Q390 262 410 287"/>
+    <path d="M314 307 Q326 336 366 320"/>
+  </g>
+
+  <!-- wordmark -->
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="78">
+    <path d="M712 221 A88 88 0 1 0 750 300" stroke="#C3DAB9"/>
+    <path d="M688 288 L750 288" stroke="#C3DAB9" stroke-width="46"/>
+    <path d="M845 203 L845 383" stroke="#E0B6CB"/>
+    <path d="M935 203 L1088 203 L935 383 L1088 383" stroke="#88AEC2"/>
+    <path d="M1172 203 L1326 203 L1172 383 L1326 383" stroke="#A6CBDE"/>
+    <path d="M1418 203 L1418 383" stroke="#FFFCAD"/>
+  </g>
+</svg>
