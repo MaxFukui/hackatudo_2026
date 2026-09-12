@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { Badge } from '@/components/ui'
 import { Pet } from './Pet'
 import type { PetStage } from './pet-stages'
 
@@ -29,39 +30,45 @@ export function ClassroomTvPreview() {
   }, [])
 
   return (
-    <section id="tv-da-sala" aria-labelledby="tv-titulo" className="scroll-mt-8 bg-ink py-20 text-surface">
-      <div className="mx-auto grid max-w-6xl items-center gap-12 px-4 lg:grid-cols-[1fr_1.4fr]">
+    <section id="tv-da-sala" aria-labelledby="tv-titulo" className="scroll-mt-4 bg-ink-900 py-16 text-branco">
+      <div className="mx-auto grid max-w-content items-center gap-10 px-4 md:px-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)]">
         <div className="space-y-4">
-          <h2 id="tv-titulo" className="font-display text-3xl font-bold text-balance sm:text-4xl">
+          <h2 id="tv-titulo" className="font-display text-h1 font-semibold">
             A TV da sala vira o viveiro da turma
           </h2>
-          <p className="text-lg text-surface/80">
-            Um painel ao vivo na televisão da sala mostra os monstrinhos de todo mundo e comemora cada conquista na hora.
-            A tela é coletiva: ninguém precisa de celular para participar.
+          <p className="max-w-reading text-reading text-ink-200">
+            Um painel ao vivo na televisão da sala mostra os monstrinhos de todo mundo e comemora cada conquista na hora. A tela é
+            coletiva: ninguém precisa de celular para participar.
           </p>
-          <ul className="space-y-2 text-surface/90">
-            <li>· Comemorações em tempo real quando alguém ganha pontinhos</li>
-            <li>· Sequência de dias seguidos de cada aluno</li>
-            <li>· Metas da turma inteira, não só individuais</li>
+          <ul className="list-disc space-y-1 pl-5 text-body text-ink-200">
+            <li>Comemorações em tempo real quando alguém ganha pontinhos</li>
+            <li>Sequência de dias seguidos de cada aluno</li>
+            <li>Metas da turma inteira, não só individuais</li>
           </ul>
         </div>
 
-        <figure className="rounded-[2rem] border-8 border-black/40 bg-surface p-4 text-ink shadow-2xl sm:p-6">
-          <div className="mb-4 flex items-center justify-between">
-            <p className="font-display text-lg font-bold">4º Ano A · Matemática</p>
-            <p className="rounded-full bg-primary px-3 py-1 text-xs font-bold text-white">AO VIVO</p>
+        <figure className="rounded-lg border-8 border-ink-950 bg-canvas p-3 text-fg shadow-overlay sm:p-5">
+          <div className="mb-3 flex items-center justify-between gap-2">
+            <p className="font-display text-h2 font-semibold">4º Ano A · Matemática</p>
+            <Badge tone="accent" dot>
+              Ao vivo
+            </Badge>
           </div>
-          <ul className="grid grid-cols-3 gap-3">
+          <ul className="grid grid-cols-2 gap-2 sm:grid-cols-3">
             {CLASSMATES.map((kid) => (
-              <li key={kid.name} className="flex flex-col items-center rounded-2xl bg-white/70 p-2">
-                <Pet stage={kid.stage} size={72} />
-                <p className="text-sm font-bold">{kid.name}</p>
-                <p className="text-xs text-ink/70 tabular-nums">{kid.streak} {kid.streak === 1 ? 'dia' : 'dias'}</p>
+              <li key={kid.name} className="flex flex-col items-center rounded-md border border-border bg-surface p-2">
+                <Pet stage={kid.stage} size={64} />
+                <p className="text-small font-semibold">{kid.name}</p>
+                <p className="text-caption text-fg-muted" data-numeric>
+                  {kid.streak} {kid.streak === 1 ? 'dia' : 'dias'}
+                </p>
               </li>
             ))}
           </ul>
-          <figcaption aria-live="polite" className="mt-4 rounded-xl bg-accent/40 px-4 py-2 text-sm font-bold">
-            {FEED[feedIndex]}
+          <figcaption aria-live="polite" className="mt-3 rounded-md bg-accent-soft px-3 py-2 text-small font-medium text-accent-soft-fg">
+            <span key={feedIndex} className="block animate-rise">
+              {FEED[feedIndex]}
+            </span>
           </figcaption>
         </figure>
       </div>

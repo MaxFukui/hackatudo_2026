@@ -1,0 +1,23 @@
+/* Monstrinho. Só transform e opacity; nada em loop (regra do modelo).
+   prefers-reduced-motion já zera as durações em styles/base.css. */
+
+@keyframes pet-wiggle {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-6deg); }
+  60% { transform: rotate(4deg); }
+}
+
+@keyframes xp-float {
+  from { opacity: 1; transform: translate(-50%, 0); }
+  to { opacity: 0; transform: translate(-50%, -3rem); }
+}
+
+.pet-wiggle {
+  transform-box: fill-box;
+  transform-origin: 50% 90%;
+  animation: pet-wiggle var(--duration-slow) var(--ease-spring);
+}
+
+.xp-float {
+  animation: xp-float 900ms var(--ease-exit) forwards;
+}

@@ -1,4 +1,4 @@
-import { PageHeader } from '@/components/layout/PageHeader'
+import { PageHeader } from '@/components/layout'
 import { Card, Table, type Column } from '@/components/ui'
 import { db } from '@/services/client'
 import type { SchoolClass } from '@/types'

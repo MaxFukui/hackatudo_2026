@@ -1,3 +1,5 @@
+import { Grid } from '@/components/ui'
+
 const POINTS = [
   {
     title: 'Tela coletiva, não celular individual',
@@ -15,18 +17,18 @@ const POINTS = [
 
 export function ConsciousTech() {
   return (
-    <section aria-labelledby="consciente-titulo" className="mx-auto max-w-6xl px-4 py-20">
-      <h2 id="consciente-titulo" className="max-w-3xl font-display text-3xl font-bold text-balance sm:text-4xl">
+    <section aria-labelledby="consciente-titulo" className="mx-auto max-w-content px-4 py-16 md:px-8">
+      <h2 id="consciente-titulo" className="max-w-reading font-display text-h1 font-semibold">
         A mesma dopamina das redes sociais, agora a favor da escola
       </h2>
-      <div className="mt-10 grid gap-8 md:grid-cols-3">
+      <Grid layout="three" className="mt-8">
         {POINTS.map((point) => (
-          <article key={point.title} className="space-y-2 border-t-4 border-primary pt-4">
-            <h3 className="font-display text-xl font-bold">{point.title}</h3>
-            <p className="text-ink/80">{point.text}</p>
+          <article key={point.title} className="space-y-2 border-t-2 border-border-strong pt-4">
+            <h3 className="text-h2 font-semibold">{point.title}</h3>
+            <p className="text-body text-fg-muted">{point.text}</p>
           </article>
         ))}
-      </div>
+      </Grid>
     </section>
   )
 }

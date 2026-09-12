@@ -10,15 +10,15 @@ export function PerformanceCard({ performance }: { performance: StudentPerforman
         <ScoreDonut value={performance.overallScore} label="Geral" />
         <dl className="grid grid-cols-3 gap-4 text-sm">
           <div>
-            <dt className="text-stone-500">Média</dt>
+            <dt className="text-fg-muted">Média</dt>
             <dd className="text-lg font-semibold tabular-nums">{formatGrade(performance.averageGrade)}</dd>
           </div>
           <div>
-            <dt className="text-stone-500">Presença</dt>
+            <dt className="text-fg-muted">Presença</dt>
             <dd className="text-lg font-semibold tabular-nums">{formatPercent(performance.attendanceRate)}</dd>
           </div>
           <div>
-            <dt className="text-stone-500">Participação</dt>
+            <dt className="text-fg-muted">Participação</dt>
             <dd className="text-lg font-semibold tabular-nums">{formatPercent(performance.participationRate)}</dd>
           </div>
         </dl>

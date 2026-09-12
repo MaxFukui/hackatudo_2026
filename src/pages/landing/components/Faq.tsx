@@ -2,20 +2,20 @@ import { FAQ } from '../faq'
 
 export function Faq() {
   return (
-    <section id="perguntas" aria-labelledby="perguntas-titulo" className="mx-auto max-w-3xl scroll-mt-8 px-4 py-20">
-      <h2 id="perguntas-titulo" className="font-display text-3xl font-bold sm:text-4xl">
+    <section id="perguntas" aria-labelledby="perguntas-titulo" className="mx-auto max-w-reading scroll-mt-4 px-4 py-16">
+      <h2 id="perguntas-titulo" className="font-display text-h1 font-semibold">
         Perguntas frequentes
       </h2>
-      <div className="mt-8 divide-y-2 divide-ink/10 border-y-2 border-ink/10">
+      <div className="mt-6 divide-y divide-border border-y border-border">
         {FAQ.map((item) => (
-          <details key={item.question} className="group py-4">
-            <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-display text-lg font-bold">
+          <details key={item.question} className="group">
+            <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-4 py-3 text-h2 font-semibold [&::-webkit-details-marker]:hidden">
               {item.question}
-              <span aria-hidden="true" className="text-2xl text-primary transition group-open:rotate-45">
+              <span aria-hidden="true" className="text-h1 text-fg-muted transition-transform duration-base ease-standard group-open:rotate-45">
                 +
               </span>
             </summary>
-            <p className="mt-2 text-ink/80">{item.answer}</p>
+            <p className="pb-4 text-reading text-fg-muted">{item.answer}</p>
           </details>
         ))}
       </div>

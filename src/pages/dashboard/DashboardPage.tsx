@@ -1,6 +1,5 @@
-import { AppShell } from '@/components/layout/AppShell'
-import { PageHeader } from '@/components/layout/PageHeader'
-import { Spinner, type TabItem } from '@/components/ui'
+import { AppShell, LogoutButton, PageHeader, type NavItem } from '@/components/layout'
+import { Spinner } from '@/components/ui'
 import { useAsync } from '@/hooks/useAsync'
 import { useTab } from '@/hooks/useTab'
 import { getDashboard } from '@/services/dashboard'
@@ -14,7 +13,7 @@ import { TeacherTable } from './components/TeacherTable'
 const TABS = ['overview', 'classes', 'teachers', 'reports'] as const
 type DirectorTab = (typeof TABS)[number]
 
-const NAV: TabItem<DirectorTab>[] = [
+const NAV: NavItem<DirectorTab>[] = [
   { id: 'overview', label: 'Visão geral' },
   { id: 'classes', label: 'Turmas' },
   { id: 'teachers', label: 'Professores' },
@@ -28,10 +27,10 @@ export function DashboardPage() {
   if (loading || !data) return <Spinner />
 
   return (
-    <AppShell userName="Direção" nav={NAV} active={tab} onNavigate={setTab}>
+    <AppShell brand="Educa" topbarActions={<LogoutButton />} userName="Direção" nav={NAV} active={tab} onNavigate={setTab}>
       {tab === 'overview' && (
         <>
-          <PageHeader title="Escola Municipal Exemplo" subtitle="Campo Grande · MS · 3º bimestre de 2026" />
+          <PageHeader title="Escola Municipal Exemplo" description="Campo Grande · MS · 3º bimestre de 2026" />
           <KpiRow summary={data.summary} />
           <div className="grid gap-4 lg:grid-cols-2">
             <PerformanceDistribution performance={data.classPerformance} />

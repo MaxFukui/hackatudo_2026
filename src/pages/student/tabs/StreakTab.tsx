@@ -1,4 +1,4 @@
-import { PageHeader } from '@/components/layout/PageHeader'
+import { PageHeader } from '@/components/layout'
 import type { Student } from '@/types'
 import { PetCreature } from '../components/PetCreature'
 import { StreakCard } from '../components/StreakCard'
@@ -6,7 +6,7 @@ import { StreakCard } from '../components/StreakCard'
 export function StreakTab({ student }: { student: Student }) {
   return (
     <>
-      <PageHeader title="Streak" subtitle="Presença, participação e provas acima da média fortalecem seu bichinho." />
+      <PageHeader title="Streak" description="Presença, participação e provas acima da média fortalecem seu bichinho." />
       <div className="grid gap-4 lg:grid-cols-2">
         <PetCreature level={student.streak.level} />
         <StreakCard streak={student.streak} />

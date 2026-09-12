@@ -1,4 +1,4 @@
-import { PageHeader } from '@/components/layout/PageHeader'
+import { PageHeader } from '@/components/layout'
 import { Spinner } from '@/components/ui'
 import { useAsync } from '@/hooks/useAsync'
 import { getDashboard } from '@/services/dashboard'
@@ -11,7 +11,7 @@ export function OverviewTab() {
 
   return (
     <>
-      <PageHeader title="4º Ano A · Matemática" subtitle="Visão geral da turma" />
+      <PageHeader title="4º Ano A · Matemática" description="Visão geral da turma" />
       <ClassSummary summary={data.summary} performance={data.classPerformance} />
       <AlertList alerts={data.recentAlerts} />
     </>

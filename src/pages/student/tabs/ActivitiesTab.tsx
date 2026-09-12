@@ -1,4 +1,4 @@
-import { PageHeader } from '@/components/layout/PageHeader'
+import { PageHeader } from '@/components/layout'
 import type { Student } from '@/types'
 import { ActivityList } from '../components/ActivityList'
 

@@ -1,33 +1,29 @@
+import { Card, Grid } from '@/components/ui'
+
 const AUDIENCES = [
-  {
-    who: 'Alunos',
-    text: 'Chocam ovinhos, cuidam do monstrinho e têm um tutor de IA que ajuda sem dar cola.',
-  },
+  { who: 'Alunos', text: 'Chocam ovinhos, cuidam do monstrinho e têm um tutor de IA que ajuda sem dar cola.' },
   {
     who: 'Professores',
     text: 'Registram participação em segundos e recebem avaliações por IA com pontos fortes e de atenção de cada aluno.',
   },
-  {
-    who: 'Direção',
-    text: 'Acompanha frequência, desempenho e alertas da escola inteira em um só painel.',
-  },
+  { who: 'Direção', text: 'Acompanha frequência, desempenho e alertas da escola inteira em um só painel.' },
 ]
 
 export function Audiences() {
   return (
-    <section aria-labelledby="publico-titulo" className="bg-accent/25 py-20">
-      <div className="mx-auto max-w-6xl px-4">
-        <h2 id="publico-titulo" className="font-display text-3xl font-bold sm:text-4xl">
+    <section aria-labelledby="publico-titulo" className="bg-verde-agua py-16">
+      <div className="mx-auto max-w-content px-4 md:px-8">
+        <h2 id="publico-titulo" className="font-display text-h1 font-semibold">
           Feito para a escola inteira
         </h2>
-        <dl className="mt-10 grid gap-8 md:grid-cols-3">
+        <Grid layout="three" className="mt-8">
           {AUDIENCES.map((a) => (
-            <div key={a.who} className="space-y-2">
-              <dt className="font-display text-2xl font-bold text-primary-strong">{a.who}</dt>
-              <dd className="text-ink/80">{a.text}</dd>
-            </div>
+            <Card key={a.who}>
+              <h3 className="font-display text-h2 font-semibold">{a.who}</h3>
+              <p className="mt-1 text-body text-fg-muted">{a.text}</p>
+            </Card>
           ))}
-        </dl>
+        </Grid>
       </div>
     </section>
   )

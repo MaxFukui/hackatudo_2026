@@ -7,16 +7,16 @@ export function AlertList({ alerts }: { alerts: Alert[] }) {
 
   return (
     <Card title="Alertas recentes">
-      <ul className="divide-y divide-stone-100">
+      <ul className="divide-y divide-border">
         {alerts.map((alert) => (
           <li key={alert.id} className="flex items-start justify-between gap-3 py-3">
             <div>
               <p className="font-medium">{alert.title}</p>
-              <p className="text-sm text-stone-600">{alert.message}</p>
+              <p className="text-sm text-fg-muted">{alert.message}</p>
             </div>
             <div className="flex flex-col items-end gap-1">
               <Badge tone={alert.severity === 'critical' ? 'danger' : 'warning'}>{alert.severity}</Badge>
-              <span className="text-xs text-stone-400">{formatDate(alert.createdAt)}</span>
+              <span className="text-xs text-fg-subtle">{formatDate(alert.createdAt)}</span>
             </div>
           </li>
         ))}

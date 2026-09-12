@@ -1,4 +1,4 @@
-import { PageHeader } from '@/components/layout/PageHeader'
+import { PageHeader } from '@/components/layout'
 import { Spinner } from '@/components/ui'
 import { useAsync } from '@/hooks/useAsync'
 import { listStudents } from '@/services/students'
@@ -10,7 +10,7 @@ export function EvaluationsTab({ classId }: { classId: string }) {
 
   return (
     <>
-      <PageHeader title="Avaliações por IA" subtitle="Notas, frequência, participação e histórico cruzados por aluno." />
+      <PageHeader title="Avaliações por IA" description="Notas, frequência, participação e histórico cruzados por aluno." />
       <div className="grid gap-4 lg:grid-cols-2">
         {data.map((student) => (
           <AiEvaluationCard key={student.id} student={student} />

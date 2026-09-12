@@ -10,10 +10,10 @@ import { SiteHeader } from './components/SiteHeader'
 
 export function LandingPage() {
   return (
-    <div className="min-h-screen bg-surface text-ink">
+    <div className="min-h-dvh bg-canvas text-fg">
       <SiteHeader />
       <main>
-        <div className="mx-auto grid max-w-6xl gap-10 px-4 pt-6 pb-16 lg:grid-cols-[1.5fr_1fr] lg:gap-14">
+        <div className="mx-auto grid max-w-content gap-8 px-4 pt-8 pb-12 md:px-8 lg:grid-cols-[minmax(0,1.5fr)_minmax(0,1fr)] lg:gap-12">
           <Hero />
           <LoginCard />
         </div>

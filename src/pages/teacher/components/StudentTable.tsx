@@ -8,7 +8,7 @@ const COLUMNS: Column<Student>[] = [
     header: 'Aluno',
     render: (s) => (
       <span className="flex items-center gap-2">
-        <Avatar name={s.name} size={28} />
+        <Avatar name={s.name} size="sm" />
         {s.name}
       </span>
     ),

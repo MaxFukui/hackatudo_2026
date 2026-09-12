@@ -6,12 +6,13 @@ interface EmptyStateProps {
   action?: ReactNode
 }
 
+// Área vazia nunca fica em branco: diz o que falta e o que fazer.
 export function EmptyState({ title, description, action }: EmptyStateProps) {
   return (
-    <div className="flex flex-col items-center gap-2 rounded-xl border border-dashed border-stone-300 p-8 text-center">
-      <p className="font-medium text-stone-700">{title}</p>
-      {description && <p className="max-w-sm text-sm text-stone-500">{description}</p>}
-      {action}
+    <div className="flex flex-col items-center gap-1 rounded-lg border border-dashed border-border-strong px-6 py-10 text-center">
+      <p className="text-body font-medium text-fg">{title}</p>
+      {description && <p className="max-w-sm text-small text-fg-muted">{description}</p>}
+      {action && <div className="mt-3">{action}</div>}
     </div>
   )
 }

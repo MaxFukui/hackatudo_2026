@@ -1,4 +1,4 @@
-import { PageHeader } from '@/components/layout/PageHeader'
+import { PageHeader } from '@/components/layout'
 import { Card, Spinner, Table, type Column } from '@/components/ui'
 import { useAsync } from '@/hooks/useAsync'
 import { listTeachers } from '@/services/teachers'

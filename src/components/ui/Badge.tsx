@@ -1,15 +1,21 @@
 import type { ReactNode } from 'react'
+import { TONE_DOT, TONE_SOFT, type Tone } from './tones'
 
-type Tone = 'neutral' | 'success' | 'warning' | 'danger' | 'info'
-
-const TONE: Record<Tone, string> = {
-  neutral: 'bg-stone-100 text-stone-700',
-  success: 'bg-emerald-100 text-emerald-800',
-  warning: 'bg-amber-100 text-amber-800',
-  danger: 'bg-red-100 text-red-800',
-  info: 'bg-accent/30 text-ink',
+interface BadgeProps {
+  tone?: Tone
+  /** Ponto colorido antes do texto: útil para status. */
+  dot?: boolean
+  /** Entra com um "pop": para o que acabou de acontecer (+10 pontos, Novo). Não para status parado. */
+  pop?: boolean
+  children: ReactNode
 }
 
-export function Badge({ tone = 'neutral', children }: { tone?: Tone; children: ReactNode }) {
-  return <span className={`inline-flex rounded-full px-2 py-0.5 text-xs font-medium ${TONE[tone]}`}>{children}</span>
+// Estado ou categoria em uma palavra. Nunca clicável — para isso use Button ou Tabs.
+export function Badge({ tone = 'neutral', dot = false, pop = false, children }: BadgeProps) {
+  return (
+    <span className={`inline-flex h-6 items-center gap-1.5 rounded-full px-2 text-caption font-medium ${TONE_SOFT[tone]} ${pop ? 'animate-pop' : ''}`}>
+      {dot && <span className={`size-1.5 rounded-full ${TONE_DOT[tone]}`} aria-hidden="true" />}
+      {children}
+    </span>
+  )
 }

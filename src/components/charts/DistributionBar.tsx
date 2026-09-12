@@ -7,7 +7,7 @@ export function DistributionBar({ distribution }: { distribution: Record<Perform
 
   return (
     <div className="space-y-3">
-      <div className="flex h-3 w-full overflow-hidden rounded-full bg-stone-100">
+      <div className="flex h-3 w-full overflow-hidden rounded-full bg-surface-muted">
         {PERFORMANCE_ORDER.map((level) => (
           <div
             key={level}
@@ -17,11 +17,11 @@ export function DistributionBar({ distribution }: { distribution: Record<Perform
           />
         ))}
       </div>
-      <ul className="flex flex-wrap gap-x-4 gap-y-1 text-xs text-stone-600">
+      <ul className="flex flex-wrap gap-x-4 gap-y-1 text-xs text-fg-muted">
         {PERFORMANCE_ORDER.map((level) => (
           <li key={level} className="flex items-center gap-1.5">
             <span className={`h-2 w-2 rounded-full ${PERFORMANCE_COLOR[level]}`} />
-            {PERFORMANCE_LABEL[level]} <span className="tabular-nums text-stone-400">{distribution[level]}</span>
+            {PERFORMANCE_LABEL[level]} <span className="tabular-nums text-fg-subtle">{distribution[level]}</span>
           </li>
         ))}
       </ul>

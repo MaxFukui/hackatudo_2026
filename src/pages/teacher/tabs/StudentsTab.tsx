@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { PageHeader } from '@/components/layout/PageHeader'
+import { PageHeader } from '@/components/layout'
 import { Spinner } from '@/components/ui'
 import { useAsync } from '@/hooks/useAsync'
 import { listStudents } from '@/services/students'

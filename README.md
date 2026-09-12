@@ -109,6 +109,8 @@ npm run lint
 
 Stack: Vite · React 19 · TypeScript · React Router · Tailwind CSS v4.
 
+O visual segue o **modelo** (base de estilo do time, em [`modelo/`](./modelo/README.md)): tokens, fontes e componentes já estão copiados para `src/`. O guia de estilo roda em **`/estilo`**. Regras principais: só token (`bg-primary`, `text-fg-muted`), um primário por tela, borda antes de sombra.
+
 Na landing, escolha o perfil (Aluno, Professor ou Diretor) e clique em **Entrar**. O login é simulado.
 
 ## Estrutura do frontend
@@ -117,16 +119,18 @@ Cada página tem um dono. Quem é dono mexe à vontade na sua pasta. Os arquivos
 
 ```
 src/
+├── styles/         ⚠️ tokens.css (paleta, fontes, medidas) + base.css — vindos do modelo
 ├── types/          ⚠️ contrato de dados (espelha db.json)
 ├── services/       ⚠️ mock da API — trocar por fetch sem mexer em componentes
-├── components/ui/  ⚠️ Button, Card, Badge, Table, Tabs, Modal…
-├── components/layout/  AppShell, Sidebar, Topbar, PageHeader, RequireRole
+├── components/ui/  ⚠️ componentes do modelo: Button, Card, Grid, Stat, Field, Form, Table, Tabs, Modal, Toast…
+├── components/layout/  AppShell, Sidebar, Topbar, PageHeader, LogoutButton, RequireRole
 ├── components/charts/  DistributionBar, ScoreDonut, Sparkline
-├── hooks/          useAuth, useAsync, useTab
+├── hooks/          useAuth, useAsync, useTab, usePressable
 ├── lib/            format, roles
 ├── routes.tsx      ⚠️
 └── pages/
     ├── landing/    /           Landpage + Login
+    ├── guia/       /estilo     Guia de estilo do modelo
     ├── student/    /aluno      Sistema do Aluno
     ├── teacher/    /professor  Sistema do Professor
     └── dashboard/  /diretor    Dashboard do Diretor

@@ -28,6 +28,7 @@ Allow: /
 Disallow: /aluno
 Disallow: /professor
 Disallow: /diretor
+Disallow: /estilo
 
 Sitemap: ${siteUrl}/sitemap.xml
 `,

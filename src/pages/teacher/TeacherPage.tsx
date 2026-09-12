@@ -1,5 +1,5 @@
-import { AppShell } from '@/components/layout/AppShell'
-import { Spinner, type TabItem } from '@/components/ui'
+import { AppShell, LogoutButton, type NavItem } from '@/components/layout'
+import { Spinner } from '@/components/ui'
 import { useAsync } from '@/hooks/useAsync'
 import { useTab } from '@/hooks/useTab'
 import { getTeacher } from '@/services/teachers'
@@ -12,7 +12,7 @@ import { StudentsTab } from './tabs/StudentsTab'
 const TABS = ['overview', 'students', 'activities', 'evaluations', 'assistant'] as const
 type TeacherTab = (typeof TABS)[number]
 
-const NAV: TabItem<TeacherTab>[] = [
+const NAV: NavItem<TeacherTab>[] = [
   { id: 'overview', label: 'Visão geral' },
   { id: 'students', label: 'Alunos' },
   { id: 'activities', label: 'Atividades' },
@@ -32,7 +32,7 @@ export function TeacherPage() {
   const classId = teacher.classes[0]
 
   return (
-    <AppShell userName={teacher.name} nav={NAV} active={tab} onNavigate={setTab}>
+    <AppShell brand="Educa" topbarActions={<LogoutButton />} userName={teacher.name} nav={NAV} active={tab} onNavigate={setTab}>
       {tab === 'overview' && <OverviewTab />}
       {tab === 'students' && <StudentsTab classId={classId} />}
       {tab === 'activities' && <ActivitiesTab teacherId={teacher.id} />}
