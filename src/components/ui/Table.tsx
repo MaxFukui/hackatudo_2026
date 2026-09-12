@@ -19,7 +19,7 @@ export function Table<T>({ columns, rows, rowKey, onRowClick }: TableProps<T>) {
     <div className="overflow-x-auto">
       <table className="w-full text-sm">
         <thead>
-          <tr className="border-b border-slate-200 text-left text-xs uppercase tracking-wide text-slate-500">
+          <tr className="border-b border-stone-200 text-left text-xs uppercase tracking-wide text-stone-500">
             {columns.map((col) => (
               <th key={col.key} className={`px-3 py-2 font-medium ${col.align === 'right' ? 'text-right' : ''}`}>
                 {col.header}
@@ -32,7 +32,7 @@ export function Table<T>({ columns, rows, rowKey, onRowClick }: TableProps<T>) {
             <tr
               key={rowKey(row)}
               onClick={onRowClick ? () => onRowClick(row) : undefined}
-              className={`border-b border-slate-100 ${onRowClick ? 'cursor-pointer hover:bg-slate-50' : ''}`}
+              className={`border-b border-stone-100 ${onRowClick ? 'cursor-pointer hover:bg-surface' : ''}`}
             >
               {columns.map((col) => (
                 <td key={col.key} className={`px-3 py-2 tabular-nums ${col.align === 'right' ? 'text-right' : ''}`}>

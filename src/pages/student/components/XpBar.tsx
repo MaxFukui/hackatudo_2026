@@ -9,7 +9,7 @@ interface XpBarProps {
 export function XpBar({ xp, nextLevelXp, level }: XpBarProps) {
   return (
     <div className="space-y-1">
-      <div className="flex justify-between text-xs text-slate-500 tabular-nums">
+      <div className="flex justify-between text-xs text-stone-500 tabular-nums">
         <span>Nível {level}</span>
         <span>
           {xp} / {nextLevelXp} XP

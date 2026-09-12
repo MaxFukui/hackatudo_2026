@@ -37,13 +37,13 @@ export function AiAssistantPanel() {
           value={prompt}
           onChange={(e) => setPrompt(e.target.value)}
           placeholder="Peça algo ao assistente"
-          className="flex-1 rounded-lg border border-slate-300 px-3 py-2 text-sm"
+          className="flex-1 rounded-lg border border-stone-300 px-3 py-2 text-sm"
         />
         <Button type="submit" disabled={loading}>
           Perguntar
         </Button>
       </form>
-      {answer && <p className="mt-4 rounded-lg bg-slate-100 p-3 text-sm">{answer}</p>}
+      {answer && <p className="mt-4 rounded-lg bg-stone-100 p-3 text-sm">{answer}</p>}
     </Card>
   )
 }

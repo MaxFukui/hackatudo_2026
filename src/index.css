@@ -1,9 +1,30 @@
 @import "tailwindcss";
 
-@theme {
+/* Paleta Educa
+ *   Equator     #E2B96C  dourado   → destaque
+ *   Ecru White  #F1EDDF  creme     → fundo
+ *   Judge Gray  #4F492F  oliva     → texto
+ *   Tia Maria   #D0570E  laranja   → ação principal
+ *
+ * Use os nomes semânticos (primary, accent, surface, ink) nos componentes.
+ * Assim, se a paleta mudar, só este arquivo muda.
+ */
+@theme inline {
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+
+  --color-equator: #e2b96c;
+  --color-ecru-white: #f1eddf;
+  --color-judge-gray: #4f492f;
+  --color-tia-maria: #d0570e;
+
+  --color-primary: var(--color-tia-maria);
+  /* Tia Maria escurecido: hover e texto sobre fundo claro (contraste AA) */
+  --color-primary-strong: #a9460b;
+  --color-accent: var(--color-equator);
+  --color-surface: var(--color-ecru-white);
+  --color-ink: var(--color-judge-gray);
 }
 
 body {
-  @apply bg-slate-50 text-slate-900 antialiased;
+  @apply bg-surface text-ink antialiased;
 }

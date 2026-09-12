@@ -7,7 +7,7 @@ export function ReportExport() {
     <>
       <PageHeader title="Relatórios" />
       <Card title="Relatório do bimestre">
-        <p className="mb-4 text-sm text-slate-600">Desempenho, frequência e alertas consolidados da escola.</p>
+        <p className="mb-4 text-sm text-stone-600">Desempenho, frequência e alertas consolidados da escola.</p>
         <Button variant="secondary" disabled>
           Exportar PDF (em breve)
         </Button>

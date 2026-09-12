@@ -16,11 +16,11 @@ export function ActivitiesTab({ teacherId }: { teacherId: string }) {
           {loading || !data ? (
             <Spinner />
           ) : (
-            <ul className="divide-y divide-slate-100">
+            <ul className="divide-y divide-stone-100">
               {data.map((a) => (
                 <li key={a.id} className="flex justify-between py-2 text-sm">
                   <span>{a.title}</span>
-                  <span className="text-slate-500 tabular-nums">
+                  <span className="text-stone-500 tabular-nums">
                     média {formatGrade(a.averageScore)} · {formatDate(a.createdAt)}
                   </span>
                 </li>

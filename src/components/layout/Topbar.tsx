@@ -7,10 +7,10 @@ export function Topbar({ userName }: { userName: string }) {
   const navigate = useNavigate()
 
   return (
-    <header className="flex h-14 items-center justify-between border-b border-slate-200 bg-white px-4">
-      <span className="font-semibold text-indigo-700">Educa</span>
+    <header className="flex h-14 items-center justify-between border-b border-stone-200 bg-white px-4">
+      <span className="font-semibold text-primary-strong">Educa</span>
       <div className="flex items-center gap-3">
-        <span className="hidden text-sm text-slate-600 sm:inline">{userName}</span>
+        <span className="hidden text-sm text-stone-600 sm:inline">{userName}</span>
         <Avatar name={userName} size={32} />
         <Button
           variant="ghost"

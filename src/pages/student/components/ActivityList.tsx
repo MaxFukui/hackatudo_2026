@@ -17,14 +17,14 @@ export function ActivityList({ student }: { student: Student }) {
 
   return (
     <Card>
-      <ul className="divide-y divide-slate-100">
+      <ul className="divide-y divide-stone-100">
         {activities.map((activity) => {
           const result = results.find((r) => r.activityId === activity.id)
           return (
             <li key={activity.id} className="flex flex-wrap items-center justify-between gap-2 py-3">
               <div>
                 <p className="font-medium">{activity.title}</p>
-                <p className="text-xs text-slate-500">{formatDate(activity.createdAt)}</p>
+                <p className="text-xs text-stone-500">{formatDate(activity.createdAt)}</p>
               </div>
               {result ? (
                 <Badge tone="success">Nota {formatGrade(result.score)}</Badge>

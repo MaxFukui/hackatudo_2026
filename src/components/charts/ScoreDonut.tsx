@@ -14,24 +14,24 @@ export function ScoreDonut({ value, max = 100, size = 96, label }: ScoreDonutPro
   return (
     <figure className="inline-flex flex-col items-center gap-1">
       <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`} role="img" aria-label={`${label ?? 'Pontuação'}: ${value}`}>
-        <circle cx={size / 2} cy={size / 2} r={radius} fill="none" stroke="#e2e8f0" strokeWidth={stroke} />
+        <circle cx={size / 2} cy={size / 2} r={radius} fill="none" stroke="var(--color-surface)" strokeWidth={stroke} />
         <circle
           cx={size / 2}
           cy={size / 2}
           r={radius}
           fill="none"
-          stroke="#4f46e5"
+          stroke="var(--color-primary)"
           strokeWidth={stroke}
           strokeLinecap="round"
           strokeDasharray={circumference}
           strokeDashoffset={circumference * (1 - pct)}
           transform={`rotate(-90 ${size / 2} ${size / 2})`}
         />
-        <text x="50%" y="50%" dominantBaseline="central" textAnchor="middle" fill="#0f172a" className="text-lg font-semibold">
+        <text x="50%" y="50%" dominantBaseline="central" textAnchor="middle" fill="var(--color-ink)" className="text-lg font-semibold">
           {value}
         </text>
       </svg>
-      {label && <figcaption className="text-xs text-slate-500">{label}</figcaption>}
+      {label && <figcaption className="text-xs text-stone-500">{label}</figcaption>}
     </figure>
   )
 }

@@ -20,7 +20,7 @@ export function Avatar({ name, src, size = 36 }: AvatarProps) {
     <span
       style={style}
       aria-label={name}
-      className="inline-flex items-center justify-center rounded-full bg-indigo-100 text-xs font-semibold text-indigo-700"
+      className="inline-flex items-center justify-center rounded-full bg-accent/30 text-xs font-semibold text-primary-strong"
     >
       {initials}
     </span>

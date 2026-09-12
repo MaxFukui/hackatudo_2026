@@ -14,9 +14,9 @@ export const PERFORMANCE_ORDER: PerformanceLevel[] = ['critical', 'attention', '
 export const PERFORMANCE_COLOR: Record<PerformanceLevel, string> = {
   critical: 'bg-red-500',
   attention: 'bg-amber-500',
-  regular: 'bg-slate-400',
+  regular: 'bg-stone-400',
   good: 'bg-emerald-500',
-  excellent: 'bg-indigo-500',
+  excellent: 'bg-accent',
 }
 
 export function formatPercent(value: number): string {
