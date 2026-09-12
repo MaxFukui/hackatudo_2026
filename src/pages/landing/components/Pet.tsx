@@ -69,7 +69,7 @@ function BabyChalk() {
     <>
       <g transform="rotate(14 100 100)">
         <rect x="64" y="42" width="72" height="116" rx="36" className="fill-laranja" />
-        <ellipse cx="100" cy="64" rx="26" ry="17" className="fill-rosa-claro" />
+        <ellipse cx="100" cy="64" rx="26" ry="17" className="fill-branco" />
       </g>
       <g className="stroke-branco" fill="none" strokeLinecap="round" strokeWidth="6">
         <ellipse cx="86" cy="104" rx="4" ry="6" className="fill-branco" strokeWidth="3" />
@@ -100,7 +100,7 @@ function Chalk() {
       </g>
       <g transform="rotate(32 362 275)">
         <rect x="277" y="105" width="170" height="340" rx="78" className="fill-laranja" />
-        <ellipse cx="362" cy="165" rx="62" ry="40" className="fill-rosa-claro" />
+        <ellipse cx="362" cy="165" rx="62" ry="40" className="fill-branco" />
       </g>
       <g fill="none" className="stroke-branco" strokeLinecap="round" strokeWidth="13">
         <ellipse cx="318" cy="263" rx="9" ry="13" className="fill-branco" strokeWidth="8" />

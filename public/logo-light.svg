@@ -11,7 +11,7 @@
   <!-- mascot -->
   <g transform="rotate(32 362 275)">
     <rect x="277" y="105" width="170" height="340" rx="78" fill="#ED9458"/>
-    <ellipse cx="362" cy="165" rx="62" ry="40" fill="#F4D4E4"/>
+    <ellipse cx="362" cy="165" rx="62" ry="40" fill="#FFFFFF"/>
   </g>
   <g fill="none" stroke="#FFFFFF" stroke-linecap="round" stroke-width="13">
     <ellipse cx="318" cy="263" rx="9" ry="13" fill="#FFFFFF" stroke-width="8"/>
@@ -21,11 +21,11 @@
 
   <!-- wordmark -->
   <g fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="78">
-    <path d="M712 221 A88 88 0 1 0 750 300" stroke="#7FAA6C"/>
-    <path d="M688 288 L750 288" stroke="#7FAA6C" stroke-width="46"/>
-    <path d="M845 203 L845 383" stroke="#D08DAF"/>
-    <path d="M935 203 L1088 203 L935 383 L1088 383" stroke="#5E8BA5"/>
+    <path d="M712 221 A88 88 0 1 0 750 300" stroke="#5E8BA5"/>
+    <path d="M688 288 L750 288" stroke="#5E8BA5" stroke-width="46"/>
+    <path d="M845 203 L845 383" stroke="#7FAA6C"/>
+    <path d="M935 203 L1088 203 L935 383 L1088 383" stroke="#C77FA4"/>
     <path d="M1172 203 L1326 203 L1172 383 L1326 383" stroke="#6FA6C4"/>
-    <path d="M1418 203 L1418 383" stroke="#CFA12B"/>
+    <path d="M1418 203 L1418 383" stroke="#DE9FC0"/>
   </g>
 </svg>
