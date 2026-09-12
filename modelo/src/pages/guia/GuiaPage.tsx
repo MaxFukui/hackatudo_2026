@@ -63,7 +63,7 @@ export function GuiaPage() {
         </label>
 
         <header className="space-y-3">
-          <p className="text-caption font-medium text-fg-muted">Educa · modelo</p>
+          <p className="text-caption font-medium text-fg-muted">gizzi · modelo</p>
           <h1 className="text-display font-semibold">Guia de estilo</h1>
           <p className="max-w-prose text-body text-fg-muted">
             Base comum das quatro áreas do produto. Tokens em <code className="font-mono text-small text-fg">src/styles/tokens.css</code>, componentes em{' '}

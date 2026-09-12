@@ -27,7 +27,7 @@ export function DashboardPage() {
   if (loading || !data) return <Spinner />
 
   return (
-    <AppShell brand="Educa" topbarActions={<LogoutButton />} userName="Direção" nav={NAV} active={tab} onNavigate={setTab}>
+    <AppShell brand="gizzi" topbarActions={<LogoutButton />} userName="Direção" nav={NAV} active={tab} onNavigate={setTab}>
       {tab === 'overview' && (
         <>
           <PageHeader title="Escola Municipal Exemplo" description="Campo Grande · MS · 3º bimestre de 2026" />

@@ -1,9 +1,9 @@
 // Fonte única do FAQ: renderizado na página e exportado como JSON-LD (FAQPage).
 export const FAQ = [
   {
-    question: 'O que é o Educa?',
+    question: 'O que é o gizzi?',
     answer:
-      'O Educa é uma plataforma de gamificação para a sala de aula. Cada aluno cuida de um monstrinho virtual que evolui conforme a criança vai à aula, participa, faz as lições e vai bem nas provas.',
+      'O gizzi é uma plataforma de gamificação para a sala de aula. Cada aluno cuida de um monstrinho virtual que evolui conforme a criança vai à aula, participa, faz as lições e vai bem nas provas.',
   },
   {
     question: 'Como o monstrinho evolui?',
@@ -21,7 +21,7 @@ export const FAQ = [
       'Não. O tutor de IA explica o conteúdo, dá dicas e revisa erros, mas não entrega respostas de prova e respeita o conteúdo da série do aluno.',
   },
   {
-    question: 'Para qual idade o Educa é indicado?',
+    question: 'Para qual idade o gizzi é indicado?',
     answer:
       'O protótipo foi pensado para o ensino fundamental, começando pelo 4º ano em Matemática, e o modelo pode ser expandido para outras séries e matérias.',
   },

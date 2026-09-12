@@ -3,7 +3,7 @@ import { readFile, rm, writeFile } from 'node:fs/promises'
 import { fileURLToPath } from 'node:url'
 
 const root = fileURLToPath(new URL('..', import.meta.url))
-const siteUrl = (process.env.VITE_SITE_URL ?? 'https://educa.app').replace(/\/$/, '')
+const siteUrl = (process.env.VITE_SITE_URL ?? 'https://gizzi.app').replace(/\/$/, '')
 
 const { render, structuredData } = await import(`${root}dist-ssr/entry-server.js`)
 

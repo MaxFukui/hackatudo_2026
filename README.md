@@ -1,4 +1,4 @@
-# Educa — HACKTUDO 2026
+# gizzi — HACKTUDO 2026
 
 Plataforma educacional que usa gamificação e IA para transformar a tecnologia de fonte de distração em aliada do aprendizado.
 

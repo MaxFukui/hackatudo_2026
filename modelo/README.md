@@ -1,4 +1,4 @@
-# modelo — base de estilo do Educa
+# modelo — base de estilo do gizzi
 
 Kit que todas as áreas (landing, aluno, professor, diretor) usam como ponto de partida.
 Não tem feature nenhuma: só tokens, componentes, casca de layout e o guia.

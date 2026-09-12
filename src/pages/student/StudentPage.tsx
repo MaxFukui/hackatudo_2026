@@ -30,7 +30,7 @@ export function StudentPage() {
   if (loading || !student) return <Spinner />
 
   return (
-    <AppShell brand="Educa" topbarActions={<LogoutButton />} userName={student.name} nav={NAV} active={tab} onNavigate={setTab}>
+    <AppShell brand="gizzi" topbarActions={<LogoutButton />} userName={student.name} nav={NAV} active={tab} onNavigate={setTab}>
       {tab === 'home' && <HomeTab student={student} />}
       {tab === 'activities' && <ActivitiesTab student={student} />}
       {tab === 'performance' && <PerformanceTab student={student} />}

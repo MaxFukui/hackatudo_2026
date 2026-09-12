@@ -32,7 +32,7 @@ export function TeacherPage() {
   const classId = teacher.classes[0]
 
   return (
-    <AppShell brand="Educa" topbarActions={<LogoutButton />} userName={teacher.name} nav={NAV} active={tab} onNavigate={setTab}>
+    <AppShell brand="gizzi" topbarActions={<LogoutButton />} userName={teacher.name} nav={NAV} active={tab} onNavigate={setTab}>
       {tab === 'overview' && <OverviewTab />}
       {tab === 'students' && <StudentsTab classId={classId} />}
       {tab === 'activities' && <ActivitiesTab teacherId={teacher.id} />}

@@ -12,7 +12,7 @@ export function SiteHeader() {
       <div className="mx-auto flex h-topbar max-w-content items-center justify-between gap-4 px-4 md:px-8">
         <a href="/" className="flex items-center gap-2 font-display text-h2 font-semibold text-fg no-underline">
           <Pet stage={3} size={32} />
-          Educa
+          gizzi
         </a>
         <nav aria-label="Principal" className="flex items-center gap-1">
           {LINKS.map((link) => (

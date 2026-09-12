@@ -24,7 +24,7 @@ export function structuredData(siteUrl: string): object[] {
     {
       '@context': 'https://schema.org',
       '@type': 'WebApplication',
-      name: 'Educa',
+      name: 'gizzi',
       url: `${siteUrl}/`,
       applicationCategory: 'EducationalApplication',
       operatingSystem: 'Web',
