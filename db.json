@@ -1,0 +1,406 @@
+{
+  "schemaVersion": "0.1.0",
+
+  "app": {
+    "name": "Educa",
+    "locale": "pt-BR",
+    "timezone": "America/Campo_Grande"
+  },
+
+  "enums": {
+    "roles": [
+      "student",
+      "teacher",
+      "director",
+      "admin"
+    ],
+
+    "attendanceStatus": [
+      "present",
+      "absent",
+      "late",
+      "justified"
+    ],
+
+    "performanceLevel": [
+      "critical",
+      "attention",
+      "regular",
+      "good",
+      "excellent"
+    ],
+
+    "activityType": [
+      "class",
+      "exercise",
+      "quiz",
+      "exam",
+      "homework",
+      "participation"
+    ],
+
+    "aiMessageRole": [
+      "user",
+      "assistant",
+      "system"
+    ]
+  },
+
+  "auth": {
+    "currentUser": {
+      "id": "usr_001",
+      "name": "Usuário Exemplo",
+      "email": "usuario@escola.edu.br",
+      "role": "teacher",
+      "avatarUrl": null,
+      "schoolId": "school_001"
+    }
+  },
+
+  "school": {
+    "id": "school_001",
+    "name": "Escola Municipal Exemplo",
+    "city": "Campo Grande",
+    "state": "MS"
+  },
+
+  "academicContext": {
+    "schoolYear": 2026,
+    "term": 3,
+
+    "grades": [
+      {
+        "id": "grade_04",
+        "name": "4º Ano"
+      }
+    ],
+
+    "classes": [
+      {
+        "id": "class_04a",
+        "name": "4º Ano A",
+        "gradeId": "grade_04",
+        "shift": "morning",
+        "studentCount": 28
+      }
+    ],
+
+    "subjects": [
+      {
+        "id": "subject_math",
+        "name": "Matemática"
+      }
+    ]
+  },
+
+  "users": {
+    "teachers": [
+      {
+        "id": "teacher_001",
+        "name": "Mariana Oliveira",
+        "role": "teacher",
+        "subjects": [
+          "subject_math"
+        ],
+        "classes": [
+          "class_04a"
+        ]
+      }
+    ],
+
+    "students": [
+      {
+        "id": "student_001",
+        "name": "Lucas Silva",
+        "role": "student",
+        "classId": "class_04a",
+        "gradeId": "grade_04",
+        "avatarUrl": null,
+
+        "performance": {
+          "overallScore": 78,
+          "performanceLevel": "good",
+          "averageGrade": 8.1,
+          "attendanceRate": 94,
+          "participationRate": 82
+        },
+
+        "streak": {
+          "current": 7,
+          "best": 12,
+          "points": 1240,
+          "level": 4,
+          "xp": 340,
+          "nextLevelXp": 500
+        }
+      }
+    ]
+  },
+
+  "dashboard": {
+    "summary": {
+      "totalStudents": 28,
+      "averageGrade": 7.6,
+      "attendanceRate": 92,
+      "participationRate": 76,
+      "studentsAtRisk": 4
+    },
+
+    "classPerformance": {
+      "classId": "class_04a",
+      "subjectId": "subject_math",
+      "averageScore": 76,
+
+      "distribution": {
+        "critical": 2,
+        "attention": 4,
+        "regular": 8,
+        "good": 10,
+        "excellent": 4
+      }
+    },
+
+    "recentAlerts": [
+      {
+        "id": "alert_001",
+        "type": "performance",
+        "severity": "warning",
+        "studentId": "student_003",
+        "title": "Queda de desempenho",
+        "message": "O desempenho caiu 18% nas últimas três atividades.",
+        "createdAt": "2026-09-12T13:30:00-04:00"
+      }
+    ]
+  },
+
+  "streakSystem": {
+    "rules": {
+      "attendance": {
+        "enabled": true,
+        "points": 10
+      },
+
+      "participation": {
+        "enabled": true,
+        "points": 15
+      },
+
+      "exerciseCompleted": {
+        "enabled": true,
+        "points": 10
+      },
+
+      "aboveAverageExam": {
+        "enabled": true,
+        "points": 30
+      }
+    },
+
+    "levels": [
+      {
+        "level": 1,
+        "name": "Explorador",
+        "minXp": 0
+      },
+      {
+        "level": 2,
+        "name": "Aprendiz",
+        "minXp": 100
+      },
+      {
+        "level": 3,
+        "name": "Dedicado",
+        "minXp": 250
+      },
+      {
+        "level": 4,
+        "name": "Mestre",
+        "minXp": 500
+      }
+    ]
+  },
+
+  "activities": [
+    {
+      "id": "activity_001",
+      "type": "exam",
+      "title": "Avaliação de Frações",
+      "subjectId": "subject_math",
+      "classId": "class_04a",
+      "teacherId": "teacher_001",
+      "maxScore": 10,
+      "averageScore": 7.2,
+      "createdAt": "2026-09-10T08:00:00-04:00"
+    }
+  ],
+
+  "studentResults": [
+    {
+      "id": "result_001",
+      "activityId": "activity_001",
+      "studentId": "student_001",
+      "score": 8.5,
+      "percentage": 85,
+      "performanceLevel": "good",
+      "teacherFeedback": "Bom domínio do conteúdo. Revisar simplificação de frações."
+    }
+  ],
+
+  "ai": {
+    "studentAssistant": {
+      "enabled": true,
+
+      "context": {
+        "studentId": "student_001",
+        "subjectId": "subject_math",
+        "gradeId": "grade_04"
+      },
+
+      "capabilities": [
+        "explainContent",
+        "generateExercises",
+        "giveHints",
+        "reviewMistakes",
+        "personalizedStudy"
+      ],
+
+      "restrictions": {
+        "giveDirectExamAnswers": false,
+        "contentOutsideGrade": false
+      }
+    },
+
+    "teacherAssistant": {
+      "enabled": true,
+
+      "capabilities": [
+        "analyzeClassPerformance",
+        "identifyLearningGaps",
+        "suggestActivities",
+        "generateExercises",
+        "generateLessonPlan",
+        "summarizeStudentProgress"
+      ]
+    },
+
+    "studentEvaluation": {
+      "enabled": true,
+
+      "input": {
+        "grades": true,
+        "attendance": true,
+        "participation": true,
+        "activityHistory": true
+      },
+
+      "exampleOutput": {
+        "studentId": "student_001",
+        "performanceLevel": "good",
+        "score": 82,
+
+        "strengths": [
+          "Boa compreensão de operações básicas",
+          "Alta frequência nas aulas"
+        ],
+
+        "attentionPoints": [
+          "Dificuldade com problemas envolvendo frações"
+        ],
+
+        "recommendations": [
+          "Realizar exercícios progressivos de frações",
+          "Trabalhar problemas contextualizados"
+        ],
+
+        "generatedAt": "2026-09-12T14:00:00-04:00"
+      }
+    }
+  },
+
+  "teacherApp": {
+    "navigation": [
+      "dashboard",
+      "classes",
+      "students",
+      "activities",
+      "evaluations",
+      "aiAssistant"
+    ],
+
+    "permissions": {
+      "viewOwnClasses": true,
+      "viewStudentDetails": true,
+      "createActivities": true,
+      "gradeStudents": true,
+      "useAiAssistant": true,
+      "viewSchoolWideData": false
+    }
+  },
+
+  "studentApp": {
+    "navigation": [
+      "home",
+      "subjects",
+      "activities",
+      "performance",
+      "streak",
+      "aiTutor"
+    ],
+
+    "home": {
+      "showStreak": true,
+      "showPoints": true,
+      "showPerformance": true,
+      "showPendingActivities": true,
+      "showAiTutor": true
+    }
+  },
+
+  "directorApp": {
+    "navigation": [
+      "dashboard",
+      "classes",
+      "teachers",
+      "students",
+      "performance",
+      "reports"
+    ],
+
+    "permissions": {
+      "viewSchoolWideData": true,
+      "viewTeachers": true,
+      "viewStudents": true,
+      "viewClasses": true,
+      "viewReports": true
+    }
+  },
+
+  "api": {
+    "baseUrl": "/api/v1",
+
+    "resources": {
+      "auth": "/auth",
+      "users": "/users",
+      "students": "/students",
+      "teachers": "/teachers",
+      "classes": "/classes",
+      "subjects": "/subjects",
+      "activities": "/activities",
+      "results": "/results",
+      "attendance": "/attendance",
+      "streaks": "/streaks",
+      "dashboard": "/dashboard",
+      "ai": "/ai"
+    }
+  },
+
+  "featureFlags": {
+    "studentAiTutor": true,
+    "teacherAiAssistant": true,
+    "aiStudentEvaluation": true,
+    "gamification": true,
+    "directorDashboard": true,
+    "notifications": false,
+    "parentPortal": false
+  }
+}
