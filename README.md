@@ -98,9 +98,45 @@ Visão agregada para professor e diretor: média da turma, taxa de frequência, 
 - Sistema do Professor — `dashboard`, `classes`, `students`, `activities`, `evaluations`, `aiAssistant`
 - Sistema do Diretor — `dashboard`, `classes`, `teachers`, `students`, `performance`, `reports`
 
+## Como rodar
+
+```bash
+npm install
+npm run dev      # http://localhost:5173
+npm run build    # checagem de tipos + build de produção
+npm run lint
+```
+
+Stack: Vite · React 19 · TypeScript · React Router · Tailwind CSS v4.
+
+Na landing, escolha o perfil (Aluno, Professor ou Diretor) e clique em **Entrar**. O login é simulado.
+
+## Estrutura do frontend
+
+Cada página tem um dono. Quem é dono mexe à vontade na sua pasta. Os arquivos marcados com ⚠️ são usados por todos: antes de alterar, avise o time.
+
+```
+src/
+├── types/          ⚠️ contrato de dados (espelha db.json)
+├── services/       ⚠️ mock da API — trocar por fetch sem mexer em componentes
+├── components/ui/  ⚠️ Button, Card, Badge, Table, Tabs, Modal…
+├── components/layout/  AppShell, Sidebar, Topbar, PageHeader, RequireRole
+├── components/charts/  DistributionBar, ScoreDonut, Sparkline
+├── hooks/          useAuth, useAsync, useTab
+├── lib/            format, roles
+├── routes.tsx      ⚠️
+└── pages/
+    ├── landing/    /           Landpage + Login
+    ├── student/    /aluno      Sistema do Aluno
+    ├── teacher/    /professor  Sistema do Professor
+    └── dashboard/  /diretor    Dashboard do Diretor
+```
+
+As abas internas ficam na URL (`/aluno?tab=streak`), então nenhuma página precisa alterar `routes.tsx`.
+
 ## Modelo de dados
 
-O arquivo [`db.json`](./db.json) é a fonte de verdade do protótipo — contrato de dados e mock do backend ao mesmo tempo. Estrutura principal:
+O arquivo [`src/data/db.json`](./src/data/db.json) é a fonte de verdade do protótipo — contrato de dados e mock do backend ao mesmo tempo. Estrutura principal:
 
 | Chave | Conteúdo |
 |---|---|
