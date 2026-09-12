@@ -18,8 +18,8 @@ export function Sparkline({ values, width = 120, height = 32 }: SparklineProps) 
 
   return (
     <svg width={width} height={height} viewBox={`0 0 ${width} ${height}`} aria-hidden="true">
-      <polyline points={points} fill="none" stroke="var(--color-primary)" strokeWidth={2} strokeLinejoin="round" />
-      <circle cx={x(last)} cy={y(values[last])} r={3} fill="var(--color-primary)" />
+      <polyline points={points} fill="none" className="stroke-primary" strokeWidth={2} strokeLinejoin="round" />
+      <circle cx={x(last)} cy={y(values[last])} r={3} className="fill-primary" />
     </svg>
   )
 }

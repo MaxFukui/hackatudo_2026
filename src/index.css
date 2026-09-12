@@ -10,7 +10,8 @@
  * Assim, se a paleta mudar, só este arquivo muda.
  */
 @theme inline {
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Nunito", ui-rounded, ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Baloo 2", "Nunito", ui-rounded, system-ui, sans-serif;
 
   --color-equator: #e2b96c;
   --color-ecru-white: #f1eddf;
@@ -27,4 +28,49 @@
 
 body {
   @apply bg-surface text-ink antialiased;
+}
+
+/* ---- Monstrinho ---- */
+
+@keyframes pet-bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+@keyframes pet-wobble {
+  0%, 100% { transform: rotate(0deg); }
+  20% { transform: rotate(-7deg); }
+  40% { transform: rotate(6deg); }
+  60% { transform: rotate(-3deg); }
+}
+
+@keyframes pet-blink {
+  0%, 92%, 100% { transform: scaleY(1); }
+  95% { transform: scaleY(0.1); }
+}
+
+@keyframes pet-pop {
+  0% { transform: scale(0.7); }
+  100% { transform: scale(1); }
+}
+
+@keyframes xp-float {
+  0% { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(-48px); opacity: 0; }
+}
+
+.pet-bob,
+.pet-wobble,
+.pet-blink {
+  transform-box: fill-box;
+}
+
+.pet-bob { animation: pet-bob 3s ease-in-out infinite; transform-origin: center bottom; }
+.pet-wobble { animation: pet-wobble 1.4s ease-in-out infinite; transform-origin: 50% 90%; }
+.pet-blink { animation: pet-blink 4.5s infinite; transform-origin: center; }
+.pet-pop { animation: pet-pop 0.5s cubic-bezier(0.3, 1.6, 0.5, 1); }
+.xp-float { animation: xp-float 0.9s ease-out forwards; }
+
+@media (prefers-reduced-motion: reduce) {
+  .pet-bob, .pet-wobble, .pet-blink, .pet-pop, .xp-float { animation: none; }
 }
