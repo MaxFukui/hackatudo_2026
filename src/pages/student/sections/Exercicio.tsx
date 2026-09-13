@@ -5,7 +5,7 @@ import type { Subject } from '@/pages/student/data/aluno'
 import { stageForXp } from '@/pages/student/lib/mascotes'
 import { MASCOTE_CARD, mascoteOfSubject, SUBJECT_EMOJI } from '@/pages/student/lib/materias'
 import type { ContextoAluno } from '@/pages/student/prompts/exercicios'
-import { gerarLote, iaDisponivel, lerCache, mensagemDeErro, progressoKey, renovaEm, TOTAL_QUESTOES, type Alvo, type Questao } from '@/pages/student/services/exercicios'
+import { gerarLote, lerCache, mensagemDeErro, progressoKey, renovaEm, TOTAL_QUESTOES, type Alvo, type Questao } from '@/pages/student/services/exercicios'
 import { IconArrowLeft, IconCheck } from '../icons'
 
 const LETRAS = ['A', 'B', 'C', 'D']
@@ -70,12 +70,12 @@ export function Exercicio({ alvo, subject, ctx, xp, onExit }: Props) {
     setErro(null)
     gerarLote(alvo, ctx)
       .then((todas) => setQuestoes(todas))
-      .catch((e) => setErro(mensagemDeErro(e)))
+      .catch((e) => setErro(mensagemDeErro(e, mascote.name)))
       .finally(() => {
         pedindo.current = false
         setCarregando(false)
       })
-  }, [alvo, ctx, questoes.length, progresso.indice, terminou])
+  }, [alvo, ctx, questoes.length, progresso.indice, terminou, mascote.name])
 
   function responder() {
     if (escolha === null || !atual) return
@@ -128,10 +128,6 @@ export function Exercicio({ alvo, subject, ctx, xp, onExit }: Props) {
         <Badge tone="success">✓ {progresso.acertos}</Badge>
       </div>
 
-      {!iaDisponivel && (
-        <Alert tone="info">Modo offline: sem a chave da IA, as questões são de demonstração. Configure <code>VITE_ANTHROPIC_API_KEY</code> no <code>.env</code>.</Alert>
-      )}
-
       {terminou ? (
         <Card tone={MASCOTE_CARD[mascote.id]}>
           <div className="flex flex-col items-center gap-3 text-center">
@@ -147,7 +143,7 @@ export function Exercicio({ alvo, subject, ctx, xp, onExit }: Props) {
           </div>
         </Card>
       ) : erro ? (
-        <Alert tone="danger" title="Não deu para buscar as questões" animate>
+        <Alert tone="warning" title="Ops!" animate>
           {erro}{' '}
           <button type="button" className="font-semibold underline" onClick={() => setQuestoes((q) => [...q])}>
             Tentar de novo

@@ -34,9 +34,10 @@ export interface Alvo {
 // Chave exposta no browser: aceitável só no protótipo do hackathon. Em produção, um proxy
 // (/api/v1/exercicios) guarda a chave e chama a API; este arquivo passa a fazer fetch nele.
 const apiKey = import.meta.env.VITE_ANTHROPIC_API_KEY as string | undefined
-export const iaDisponivel = Boolean(apiKey)
 
 const client = apiKey ? new Anthropic({ apiKey, dangerouslyAllowBrowser: true }) : null
+// Recado de desenvolvedor vai para o console, nunca para a tela da criança.
+if (!client && import.meta.env.DEV) console.warn('[gizzi] VITE_ANTHROPIC_API_KEY não definida: exercícios em modo de demonstração. Veja .env.example.')
 
 function cacheKey(alvoId: string) {
   return `gizzi.exercicios.${alvoId}`
@@ -117,20 +118,19 @@ async function gerarComClaude(alvo: Alvo, ctx: ContextoAluno, lote: number, quan
   return parsed.questoes.map((q, i) => ({ ...q, id: `${alvo.id}-${atuais.length + i}` }))
 }
 
-// Sem chave: banco mínimo para a tela funcionar (demo offline). Marca no título para ninguém confundir.
+// Sem chave: banco mínimo para a tela funcionar (demo). A criança não vê diferença além do conteúdo genérico.
 function gerarOffline(alvo: Alvo, ctx: ContextoAluno, quantidade: number, offset: number): Questao[] {
   const base: Omit<Questao, 'id'>[] = [
     { topico: 'aquecimento', enunciado: `Sobre ${ctx.materia}: qual destas é uma boa forma de começar a estudar "${alvo.titulo}"?`, alternativas: ['Ler o enunciado com calma', 'Chutar a primeira', 'Pular a questão', 'Perguntar a resposta'], correta: 0, dica: 'Pense no que uma professora pediria primeiro.', explicacao: 'Ler com calma ajuda a entender o que a questão pede — por isso é o melhor começo.' },
     { topico: 'estratégia', enunciado: 'Quando você não entende uma questão, o que ajuda mais?', alternativas: ['Ler de novo e sublinhar', 'Fechar o caderno', 'Copiar do colega', 'Deixar em branco'], correta: 0, dica: 'Ler de novo faz a gente enxergar o que passou batido.', explicacao: 'Reler e sublinhar as partes importantes é o jeito certo de entender melhor.' },
   ]
-  return Array.from({ length: quantidade }, (_, i) => ({ ...base[(offset + i) % base.length], id: `${alvo.id}-${offset + i}`, enunciado: `[offline] ${base[(offset + i) % base.length].enunciado}` }))
+  return Array.from({ length: quantidade }, (_, i) => ({ ...base[(offset + i) % base.length], id: `${alvo.id}-${offset + i}` }))
 }
 
-/** Erro amigável para a tela. */
-export function mensagemDeErro(err: unknown): string {
-  if (err instanceof Anthropic.AuthenticationError) return 'A chave da IA não foi aceita. Avise um adulto para conferir a configuração.'
-  if (err instanceof Anthropic.RateLimitError) return 'A IA está ocupada agora. Espere um pouquinho e tente de novo.'
-  if (err instanceof Anthropic.APIConnectionError) return 'Sem conexão com a IA. Veja se a internet está funcionando.'
-  if (err instanceof Anthropic.APIError) return `A IA respondeu com erro (${err.status}). Tente de novo.`
-  return err instanceof Error ? err.message : 'Algo deu errado. Tente de novo.'
+/** Mensagem para a criança (curta, sem termos técnicos). O erro real vai para o console. */
+export function mensagemDeErro(err: unknown, mascote: string): string {
+  console.error('[gizzi] exercícios:', err)
+  if (err instanceof Anthropic.APIConnectionError) return `O ${mascote} não conseguiu se conectar. Veja se a internet está funcionando e tente de novo.`
+  if (err instanceof Anthropic.RateLimitError) return `O ${mascote} está ocupado agora. Espera um pouquinho e tenta de novo.`
+  return `O ${mascote} não conseguiu preparar as questões agora. Tenta de novo daqui a pouquinho.`
 }
