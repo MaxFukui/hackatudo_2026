@@ -30,24 +30,24 @@ export function ClassroomTvPreview() {
   }, [])
 
   return (
-    <section id="tv-da-sala" aria-labelledby="tv-titulo" className="scroll-mt-4 bg-ink-900 py-16 text-branco">
+    <section id="tv-da-sala" aria-labelledby="tv-titulo" className="scroll-mt-16 bg-surface py-20 text-fg md:py-28">
       <div className="mx-auto grid max-w-content items-center gap-10 px-4 md:px-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)]">
         <div className="space-y-4">
-          <h2 id="tv-titulo" className="font-display text-h1 font-semibold">
+          <h2 id="tv-titulo" className="text-statement font-display font-semibold">
             A TV da sala vira o viveiro da turma
           </h2>
-          <p className="max-w-reading text-reading text-ink-200">
+          <p className="max-w-reading text-reading text-fg-muted">
             Um painel ao vivo na televisão da sala mostra os monstrinhos de todo mundo e comemora cada conquista na hora. A tela é
             coletiva: ninguém precisa de celular para participar.
           </p>
-          <ul className="list-disc space-y-1 pl-5 text-body text-ink-200">
+          <ul className="list-disc space-y-1 pl-5 text-body text-fg-muted">
             <li>Comemorações em tempo real quando alguém ganha pontinhos</li>
             <li>Sequência de dias seguidos de cada aluno</li>
             <li>Metas da turma inteira, não só individuais</li>
           </ul>
         </div>
 
-        <figure className="rounded-lg border-8 border-ink-950 bg-canvas p-3 text-fg shadow-overlay sm:p-5">
+        <figure className="rounded-lg border-8 border-ink-900 bg-canvas p-3 text-fg shadow-overlay sm:p-5">
           <div className="mb-3 flex items-center justify-between gap-2">
             <p className="font-display text-h2 font-semibold">4º Ano A · Matemática</p>
             <Badge tone="accent" dot>

@@ -3,6 +3,8 @@ import type { LandingVideo } from '../videos'
 
 interface ScrollVideoProps {
   video: LandingVideo
+  /** Ocupa o pai inteiro (object-cover), sem borda: fundo do topo. */
+  cover?: boolean
   className?: string
 }
 
@@ -10,7 +12,7 @@ interface ScrollVideoProps {
 // Sem áudio (navegador só deixa tocar sozinho se estiver mudo). Só baixa quando chega perto.
 // prefers-reduced-motion: não toca sozinho — fica a capa com o botão de play.
 // Botão de pausa sempre visível: conteúdo que se move por mais de 5s precisa poder parar (WCAG 2.2.2).
-export function ScrollVideo({ video, className = '' }: ScrollVideoProps) {
+export function ScrollVideo({ video, cover = false, className = '' }: ScrollVideoProps) {
   const ref = useRef<HTMLVideoElement>(null)
   const userPaused = useRef(false)
   const [playing, setPlaying] = useState(false)
@@ -63,14 +65,14 @@ export function ScrollVideo({ video, className = '' }: ScrollVideoProps) {
   }
 
   return (
-    <div className={`relative overflow-hidden rounded-lg border border-border bg-ink-900 ${className}`}>
+    <div className={cover ? `absolute inset-0 ${className}` : `relative overflow-hidden rounded-lg border border-border bg-ink-900 ${className}`}>
       <video
         ref={ref}
-        className="block h-auto w-full"
+        className={cover ? 'block h-full w-full object-cover' : 'block h-auto w-full'}
         width={video.width}
         height={video.height}
         poster={video.poster}
-        preload="none"
+        preload={cover ? 'auto' : 'none'}
         muted
         loop
         playsInline
@@ -85,7 +87,7 @@ export function ScrollVideo({ video, className = '' }: ScrollVideoProps) {
         type="button"
         onClick={toggle}
         aria-label={playing ? `Pausar vídeo: ${video.name}` : `Tocar vídeo: ${video.name}`}
-        className="absolute right-3 bottom-3 inline-flex size-11 items-center justify-center rounded-full bg-ink-950/60 text-branco transition-[background-color,transform] duration-fast ease-standard hover:bg-ink-950/80 active:scale-95"
+        className="absolute right-3 bottom-3 z-10 inline-flex size-11 items-center justify-center rounded-full bg-ink-950/60 text-branco transition-[background-color,transform] duration-fast ease-standard hover:bg-ink-950/80 active:scale-95"
       >
         <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
           {playing ? <path d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z" /> : <path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.5-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5Z" />}

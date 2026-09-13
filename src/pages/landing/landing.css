@@ -1,0 +1,52 @@
+/*
+  Tema escuro da landing (inspirado na Revolut Business) com a paleta do gizzi.
+  Só redefine os tokens semânticos do modelo dentro de .theme-escuro: os componentes
+  (Card, Input, ChoiceGroup, Button…) continuam os mesmos e passam a sair escuros.
+  As áreas logadas (aluno, professor, diretor) seguem claras.
+  Contraste medido sobre --color-canvas: fg 17:1 · fg-muted 11:1 · fg-subtle 5:1.
+*/
+.theme-escuro {
+  color-scheme: dark;
+
+  --color-canvas: #141518;          /* derivado do escuro, um degrau abaixo de ink-950 */
+  --color-surface: #1f2024;         /* = ink-950 */
+  --color-surface-muted: #2e2f35;   /* = ink-900 */
+  --color-border: #2e2f35;
+  --color-border-strong: #4a4b52;
+  --color-fg: #f7f7f5;
+  --color-fg-muted: #c9c9ce;
+  --color-fg-subtle: #8a8b93;
+
+  /* Ação principal vira pílula branca, como na Revolut. */
+  --color-primary: #ffffff;
+  --color-primary-hover: #e2e2e5;
+  --color-primary-fg: #1f2024;
+  --color-primary-soft: #3f6e88;    /* = info: seleção legível com texto claro (5,2:1) */
+  --color-primary-soft-fg: #ffffff;
+
+  --color-accent-soft: #3a2a1f;     /* derivado do laranja para fundo escuro */
+  --color-accent-soft-fg: #fbdfcb;
+}
+
+.theme-escuro ::selection {
+  color: #1f2024;
+}
+
+/* Escala de título só da landing: maior que text-display, para o impacto do topo. */
+.text-hero {
+  font-size: clamp(2.5rem, 6.5vw, 5.5rem);
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+}
+
+.text-statement {
+  font-size: clamp(2rem, 4.5vw, 3.75rem);
+  line-height: 1.08;
+  letter-spacing: -0.015em;
+}
+
+/* Efeitos presos à rolagem escrevem transform/opacity direto no elemento.
+   will-change só enquanto a seção está na tela (o hook liga/desliga). */
+.scroll-fx {
+  transform-origin: 50% 0%;
+}

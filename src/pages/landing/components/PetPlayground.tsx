@@ -1,6 +1,7 @@
 import { useRef, useState } from 'react'
 import { Button, Card, ProgressBar } from '@/components/ui'
 import { Pet } from './Pet'
+import { Reveal } from './Reveal'
 import { PET_STAGES, stageForXp } from './pet-stages'
 
 // Mesmos valores do streakSystem em db.json.
@@ -13,7 +14,7 @@ const ACTIONS = [
 
 const MAX_XP = PET_STAGES[PET_STAGES.length - 1].minXp
 
-export function Hero() {
+export function PetPlayground() {
   const [xp, setXp] = useState(0)
   const [earned, setEarned] = useState(0)
   const [floats, setFloats] = useState<{ key: number; value: number }[]>([])
@@ -38,17 +39,15 @@ export function Hero() {
   }
 
   return (
-    <div className="flex flex-col gap-6">
-      <div className="space-y-3">
-        <p className="text-small font-medium text-accent-soft-fg">Sala de aula gamificada</p>
-        <h1 className="font-display text-display font-semibold text-fg">Cuide do seu monstrinho. Cuide do seu aprendizado.</h1>
-        <p className="max-w-reading text-reading text-fg-muted">
-          Cada presença, participação e lição feita vira pontinho. Os pontinhos chocam o ovo e fazem o monstrinho crescer — na TV
-          da sala, na frente da turma toda.
-        </p>
-      </div>
+    <section aria-labelledby="experimente-titulo" className="mx-auto max-w-3xl px-4 pb-20 md:px-8 md:pb-28">
+      <Reveal className="mb-8 text-center">
+        <h2 id="experimente-titulo" className="text-statement font-display font-semibold">
+          Experimente
+        </h2>
+        <p className="mx-auto mt-3 max-w-reading text-reading text-fg-muted">Choque um ovinho agora mesmo.</p>
+      </Reveal>
 
-      <Card tone="amarelo">
+      <Card>
         <div className="flex flex-col items-center gap-5 sm:flex-row">
           <div className="relative shrink-0">
             <div key={stage} className={stage > 0 ? 'animate-pop' : undefined}>
@@ -107,6 +106,6 @@ export function Hero() {
           </div>
         </div>
       </Card>
-    </div>
+    </section>
   )
 }

@@ -2,8 +2,8 @@ import { FAQ } from '../faq'
 
 export function Faq() {
   return (
-    <section id="perguntas" aria-labelledby="perguntas-titulo" className="mx-auto max-w-reading scroll-mt-4 px-4 py-16">
-      <h2 id="perguntas-titulo" className="font-display text-h1 font-semibold">
+    <section id="perguntas" aria-labelledby="perguntas-titulo" className="mx-auto max-w-reading scroll-mt-20 px-4 py-20 md:py-28">
+      <h2 id="perguntas-titulo" className="text-statement font-display font-semibold">
         Perguntas frequentes
       </h2>
       <div className="mt-6 divide-y divide-border border-y border-border">

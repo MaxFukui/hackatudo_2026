@@ -32,7 +32,7 @@ export function LoginCard() {
   }
 
   return (
-    <div id="entrar" className="scroll-mt-4 self-start lg:mt-8">
+    <div className="w-full">
       <Card title="Entrar" description={GREETING[role]}>
         <Form onSubmit={onSubmit}>
           <ChoiceGroup name="role" label="Entrar como" options={ROLES} value={role} onChange={setRole} columns={3} />
