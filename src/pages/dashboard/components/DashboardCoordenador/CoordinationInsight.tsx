@@ -3,27 +3,27 @@ import { Badge, Card } from '@/components/ui'
 const INSIGHTS = [
   {
     label: 'Prioridade da semana',
-    title: 'Engajamento do 5o Ano B',
-    text: 'A turma tem queda simultanea em presenca, participacao e entregas. Vale combinar uma meta coletiva curta antes da proxima avaliacao.',
+    title: 'Engajamento do 2º Ano C',
+    text: 'A turma tem queda simultânea em presença, participação e entregas. Vale combinar uma meta coletiva curta antes da próxima avaliação.',
     tone: 'danger' as const,
   },
   {
     label: 'Oportunidade',
     title: 'Recompensas como cultura de turma',
-    text: '1o Ano A e 6o Ano A estao perto de conquistar recompensas. A coordenação pode usar esses casos como exemplo para outras salas.',
+    text: '1º Ano A e 2º Ano A estão perto de conquistar recompensas. A coordenação pode usar esses casos como exemplo para outras salas.',
     tone: 'success' as const,
   },
   {
-    label: 'Apoio pedagogico',
-    title: 'Frações seguem como conteudo sensível',
-    text: 'O 4o Ano A evoluiu, mas ainda concentra dificuldades em problemas contextualizados. Uma intervenção curta pode evitar queda no bimestre.',
+    label: 'Apoio pedagógico',
+    title: 'Frações seguem como conteúdo sensível',
+    text: 'O 4º Ano A evoluiu, mas ainda concentra dificuldades em problemas contextualizados. Uma intervenção curta pode evitar queda no bimestre.',
     tone: 'warning' as const,
   },
 ]
 
 export function CoordinationInsight() {
   return (
-    <Card title="Leitura da coordenação" description="Sinais transformados em decisões práticas para a semana.">
+    <Card title="Leitura da Coordenação" description="Sinais transformados em decisões práticas para a semana.">
       <div className="space-y-3">
         {INSIGHTS.map((item) => (
           <article key={item.title} className="rounded-lg border border-border bg-surface-muted p-3">
