@@ -114,7 +114,9 @@ export function StudentShell<T extends string>({ userName, points, onDemoXp, nav
       <Background />
 
       <main className="min-w-0 flex-1 pb-[calc(5rem+env(safe-area-inset-bottom))] md:pb-0">
-        <div key={String(active)} className="mx-auto w-full max-w-content animate-rise space-y-4 px-4 py-4 md:space-y-6 md:px-8 md:py-8">
+        {/* fill-mode backwards: depois da entrada a animação "solta" o transform — senão o Safari prende
+            modal, toast e confete (position: fixed) dentro desta coluna. */}
+        <div key={String(active)} className="mx-auto w-full max-w-content animate-rise [animation-fill-mode:backwards] space-y-4 px-4 py-4 md:space-y-6 md:px-8 md:py-8">
           {children}
         </div>
       </main>

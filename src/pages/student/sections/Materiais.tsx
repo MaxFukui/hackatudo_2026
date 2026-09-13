@@ -1,4 +1,5 @@
 import { useState, type CSSProperties } from 'react'
+import { createPortal } from 'react-dom'
 import { SUBJECT_EMOJI, SUBJECT_TILE } from '@/pages/student/lib/materias'
 import { Badge, Button, Card, EmptyState, Modal } from '@/components/ui'
 import type { Material, Student, SubjectId } from '@/pages/student/data/aluno'
@@ -72,37 +73,41 @@ export function Materiais({ student, onStart }: Props) {
         </div>
       )}
 
-      <Modal
-        open={open !== null}
-        title={open?.title ?? ''}
-        description={open ? `${KIND[open.kind].label} de ${subjectOf(open).name} · ${open.minutes} minutos` : undefined}
-        onClose={() => setOpen(null)}
-        footer={
-          <>
-            <Button variant="secondary" onClick={() => setOpen(null)}>
-              Depois
-            </Button>
-            <Button
-              variant="accent"
-              icon={<IconPlay />}
-              onClick={() => {
-                if (open) onStart(open)
-                setOpen(null)
-              }}
-            >
-              Começar agora
-            </Button>
-          </>
-        }
-      >
-        <div className="flex gap-3">
-          {open && <IconTile size="lg" className={SUBJECT_TILE[open.subjectId]}>{KIND[open.kind].emoji}</IconTile>}
-          <div>
-            <p className="text-reading text-fg">{open?.description}</p>
-            <p className="mt-2 text-small text-fg-muted">São <strong>15 questões</strong> feitas pela IA para você hoje, com dica. Cada acerto vale <strong>2 XP</strong> (1 XP se pedir dica). Pode parar e voltar — e amanhã tem 15 novas.</p>
+      {/* Portal no body: o overlay cobre a tela inteira mesmo dentro de ancestrais com transform/filter. */}
+      {createPortal(
+        <Modal
+          open={open !== null}
+          title={open?.title ?? ''}
+          description={open ? `${KIND[open.kind].label} de ${subjectOf(open).name} · ${open.minutes} minutos` : undefined}
+          onClose={() => setOpen(null)}
+          footer={
+            <>
+              <Button variant="secondary" onClick={() => setOpen(null)}>
+                Depois
+              </Button>
+              <Button
+                variant="accent"
+                icon={<IconPlay />}
+                onClick={() => {
+                  if (open) onStart(open)
+                  setOpen(null)
+                }}
+              >
+                Começar agora
+              </Button>
+            </>
+          }
+        >
+          <div className="flex gap-3">
+            {open && <IconTile size="lg" className={SUBJECT_TILE[open.subjectId]}>{KIND[open.kind].emoji}</IconTile>}
+            <div>
+              <p className="text-reading text-fg">{open?.description}</p>
+              <p className="mt-2 text-small text-fg-muted">São <strong>15 questões</strong> feitas pela IA para você hoje, com dica. Cada acerto vale <strong>2 XP</strong> (1 XP se pedir dica). Pode parar e voltar — e amanhã tem 15 novas.</p>
+            </div>
           </div>
-        </div>
-      </Modal>
+        </Modal>,
+        document.body,
+      )}
     </>
   )
 }
