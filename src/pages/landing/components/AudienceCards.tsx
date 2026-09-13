@@ -50,21 +50,22 @@ export function AudienceCards() {
 
       <ul
         ref={track}
-        className="scrollbar-none mx-auto mt-10 flex max-w-content snap-x snap-mandatory gap-4 overflow-x-auto px-4 md:mt-14 md:grid md:grid-cols-3 md:items-end md:overflow-visible md:px-8"
+        className="scrollbar-none mx-auto mt-10 flex max-w-content snap-x snap-mandatory gap-4 overflow-x-auto px-4 md:mt-20 md:grid md:grid-cols-3 md:items-stretch md:overflow-visible md:px-8"
       >
         {CARDS.map((card, i) => (
           <li
             key={card.who}
             data-index={i}
+            // Mesma altura nos três; o do meio só sobe (transform), sem mudar de tamanho.
             className={`flex shrink-0 basis-4/5 snap-center flex-col overflow-hidden rounded-lg border border-border bg-surface sm:basis-3/5 md:basis-auto ${
-              i === 1 ? 'md:pb-10' : ''
+              i === 1 ? 'md:-translate-y-8' : ''
             }`}
           >
-            <div className="px-5 pt-6">
+            <div className="px-5 pt-6 pb-6">
               <h3 className="font-display text-h1 font-semibold">{card.who}</h3>
               <p className="mt-2 text-body text-fg-muted">{card.text}</p>
             </div>
-            <img src={card.image} alt="" loading="lazy" width={640} height={360} className="mt-6 aspect-video w-full object-cover" />
+            <img src={card.image} alt="" loading="lazy" width={640} height={360} className="mt-auto aspect-video w-full object-cover" />
           </li>
         ))}
       </ul>
