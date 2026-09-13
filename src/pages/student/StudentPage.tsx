@@ -38,7 +38,7 @@ export function StudentPage() {
   // Cada recompensa incrementa: dispara confete e o pulinho do mascote.
   const [celebration, setCelebration] = useState<{ tick: number; big: boolean }>({ tick: 0, big: false })
 
-  function reward(subjectId: Student['subjects'][number]['id'] | null, xp: number, note: string) {
+  function reward(subjectId: Student['subjects'][number]['id'], xp: number, note: string) {
     const before = stageForXp(student.xp)
     const after = stageForXp(student.xp + xp)
     setStudent((s) => ({
@@ -93,7 +93,7 @@ export function StudentPage() {
   }
 
   return (
-    <StudentShell userName={student.name} points={student.points} onDemoXp={() => reward(null, 100, '+100 XP (modo demo)')} nav={NAV} active={tab} onNavigate={setTab}>
+    <StudentShell userName={student.name} points={student.points} nav={NAV} active={tab} onNavigate={setTab}>
       {sessao ? (
         <Exercicio
           key={sessao.alvo.id}

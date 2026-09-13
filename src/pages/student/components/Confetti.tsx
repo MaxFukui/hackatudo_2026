@@ -37,7 +37,8 @@ interface ConfettiProps {
 // Só transform/opacity; some do DOM depois de 1,2 s. Reduced-motion: dura 0,01 ms (base.css).
 export function Confetti({ trigger, size = 'small' }: ConfettiProps) {
   // Peças derivadas do gatilho (sem setState no efeito); o efeito só agenda o sumiço.
-  const [seen, setSeen] = useState(0)
+  // Começa "já visto": se o componente remontar (troca de aba), o último estouro não repete.
+  const [seen, setSeen] = useState(trigger)
   const pieces = useMemo(() => (trigger ? burst(size === 'big' ? 40 : 22, size === 'big' ? 340 : 200) : []), [trigger, size])
 
   useEffect(() => {

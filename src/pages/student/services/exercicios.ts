@@ -1,13 +1,16 @@
-// Exercícios gerados por IA (Claude): 15 por material, numa chamada só.
+// Exercícios gerados por IA (Claude): 15 por material, em 3 chamadas paralelas de 5
+// (aquecimento · no nível · desafio). A API responde em fila, então cada parte é entregue
+// assim que chega: a criança começa pelo aquecimento enquanto o resto termina no fundo.
 // Ficam no localStorage por 24 h — fechar e voltar continua de onde parou; no dia seguinte
 // vêm 15 novas (e o progresso do material recomeça).
 import Anthropic from '@anthropic-ai/sdk'
 import { zodOutputFormat } from '@anthropic-ai/sdk/helpers/zod'
 import { z } from 'zod'
-import { SYSTEM_EXERCICIOS, userPromptLote, type ContextoAluno } from '@/pages/student/prompts/exercicios'
+import { SYSTEM_EXERCICIOS, userPromptLote, type ContextoAluno, type Parte } from '@/pages/student/prompts/exercicios'
 
 export const TOTAL_QUESTOES = 15
-export const TAMANHO_LOTE = 15
+const PARTES: Parte[] = ['aquecimento', 'no nível', 'desafio']
+const POR_PARTE = TOTAL_QUESTOES / PARTES.length
 /** Validade do conjunto: depois disso, gera de novo. */
 export const VALIDADE_MS = 24 * 60 * 60 * 1000
 
@@ -90,32 +93,50 @@ function gravarCache(alvoId: string, questoes: Questao[], geradoEm: number) {
   }
 }
 
-/** Gera o próximo lote e devolve a lista completa (cache + novo). */
-export async function gerarLote(alvo: Alvo, ctx: ContextoAluno): Promise<Questao[]> {
+/**
+ * Gera o conjunto do dia. `onParcial` recebe a lista acumulada cada vez que uma parte fica
+ * pronta (em ordem: aquecimento → no nível → desafio), para a tela começar antes do fim.
+ * Devolve a lista completa.
+ */
+export async function gerarLote(alvo: Alvo, ctx: ContextoAluno, onParcial?: (questoes: Questao[]) => void): Promise<Questao[]> {
   const atuais = lerCache(alvo.id)
   if (atuais.length >= TOTAL_QUESTOES) return atuais
-  const lote = Math.floor(atuais.length / TAMANHO_LOTE) + 1
-  const quantidade = Math.min(TAMANHO_LOTE, TOTAL_QUESTOES - atuais.length)
+  const geradoEm = lerConjunto(alvo.id)?.geradoEm ?? Date.now()
 
-  const novas = client ? await gerarComClaude(alvo, ctx, lote, quantidade, atuais) : gerarOffline(alvo, ctx, quantidade, atuais.length)
-  const todas = [...atuais, ...novas]
-  gravarCache(alvo.id, todas, lerConjunto(alvo.id)?.geradoEm ?? Date.now())
-  return todas
+  const finalizar = (lista: Questao[]) => {
+    const todas = lista.slice(0, TOTAL_QUESTOES).map((q, i) => ({ ...q, id: `${alvo.id}-${i}` }))
+    gravarCache(alvo.id, todas, geradoEm)
+    return todas
+  }
+
+  if (!client) return finalizar([...atuais, ...gerarOffline(alvo, ctx, TOTAL_QUESTOES, 0)])
+
+  // Dispara as 3 partes juntas e entrega cada uma assim que chega, na ordem em que chegam:
+  // esperar a "certa" custava 10 s a mais para a criança. Qualquer parte serve para começar.
+  const acumulado = [...atuais]
+  await Promise.all(
+    PARTES.map(async (parte) => {
+      const qs = await gerarComClaude(alvo, ctx, parte, POR_PARTE, atuais)
+      acumulado.push(...qs)
+      onParcial?.(finalizar(acumulado))
+    }),
+  )
+  return finalizar(acumulado)
 }
 
-async function gerarComClaude(alvo: Alvo, ctx: ContextoAluno, lote: number, quantidade: number, atuais: Questao[]): Promise<Questao[]> {
+async function gerarComClaude(alvo: Alvo, ctx: ContextoAluno, parte: Parte, quantidade: number, atuais: Questao[]): Promise<Questao[]> {
   const response = await client!.messages.parse({
     // Haiku 4.5: rápido e barato para 10 questões curtas de 4º ano. (Não aceita `effort`; thinking fica desligado.)
     model: 'claude-haiku-4-5',
-    max_tokens: 8000,
+    max_tokens: 4000,
     // Prompt de sistema estável + cache: as 5 chamadas do material reaproveitam o prefixo.
     system: [{ type: 'text', text: SYSTEM_EXERCICIOS, cache_control: { type: 'ephemeral' } }],
     output_config: { format: zodOutputFormat(LoteSchema) },
-    messages: [{ role: 'user', content: userPromptLote(ctx, lote, quantidade, alvo.titulo, alvo.descricao, atuais.map((q) => q.enunciado)) }],
+    messages: [{ role: 'user', content: userPromptLote(ctx, parte, quantidade, alvo.titulo, alvo.descricao, atuais.map((q) => q.enunciado)) }],
   })
   const parsed = response.parsed_output
   if (!parsed) throw new Error('A IA não devolveu questões válidas. Tente de novo.')
-  return parsed.questoes.map((q, i) => ({ ...q, id: `${alvo.id}-${atuais.length + i}` }))
+  return parsed.questoes.map((q) => ({ ...q, id: '' }))
 }
 
 // Sem chave: banco mínimo para a tela funcionar (demo). A criança não vê diferença além do conteúdo genérico.

@@ -26,13 +26,13 @@ export const SYSTEM_EXERCICIOS = `Você é o gerador de exercícios do Gizzi, um
 ## Formato de cada questão
 - Enunciado curto (até 2 frases). Se tiver conta, deixe os números claros.
 - Exatamente 4 alternativas curtas, plausíveis, sem "todas as anteriores" e sem "nenhuma das anteriores".
-- Só UMA alternativa correta. As erradas refletem erros comuns de quem está aprendendo (por exemplo, esquecer o "vai um", confundir metade com dobro, trocar S por Ç).
+- Só UMA alternativa correta. Antes de fechar a questão, confira cada alternativa errada: ela não pode ser equivalente à certa (2/4 e 3/6 são a mesma fração; "10 + 5" e "15" são o mesmo valor; sinônimos contam como iguais). Se duas forem verdadeiras, troque uma. As erradas refletem erros comuns de quem está aprendendo (esquecer o "vai um", confundir metade com dobro, trocar S por Ç).
 - Uma DICA que ajuda a pensar sem entregar a resposta: relembra a regra, sugere um primeiro passo ou uma pergunta guia. Nunca cite a alternativa correta na dica.
 - Uma EXPLICAÇÃO de 1–2 frases, dita como uma professora carinhosa explicaria, começando pelo raciocínio e terminando na resposta.
 - Um "topico" curto (2–4 palavras) dizendo o assunto da questão.
 
 ## Dificuldade
-- Recebe a nota atual do aluno (0–10). Dentro do conjunto, comece fácil e confortável e suba devagar: as primeiras 5 são de aquecimento, as 5 do meio no nível da série, as 5 últimas um pouco mais desafiadoras. Nota baixa (< 6): reforce o básico e varie pouco. Nota alta (≥ 8): traga situações-problema e passos combinados, ainda dentro da série.
+- Recebe a nota atual do aluno (0–10) e a PARTE pedida: "aquecimento" (fácil e confortável), "no nível" (o esperado para a série) ou "desafio" (um passo a mais, ainda dentro da série). Nota baixa (< 6): reforce o básico e varie pouco. Nota alta (≥ 8): traga situações-problema e passos combinados, ainda dentro da série.
 - Nunca use conteúdo de séries acima. Nunca repita um enunciado que já apareceu (a lista vem no pedido).
 - Misture os assuntos do bimestre; no máximo 3 questões seguidas do mesmo assunto.
 - Espalhe a posição da alternativa correta (não deixe sempre na mesma letra).
@@ -42,8 +42,10 @@ export const SYSTEM_EXERCICIOS = `Você é o gerador de exercícios do Gizzi, um
 - Não faça pegadinhas de leitura. A questão testa o conteúdo, não a atenção.
 - Não use negação dupla ("qual NÃO é incorreto").`
 
-export function userPromptLote(ctx: ContextoAluno, lote: number, quantidade: number, materialTitulo: string, materialDescricao: string, jaUsados: string[]): string {
-  return `Gere ${quantidade} questões para o material abaixo (conjunto ${lote} de hoje).
+export type Parte = 'aquecimento' | 'no nível' | 'desafio'
+
+export function userPromptLote(ctx: ContextoAluno, parte: Parte, quantidade: number, materialTitulo: string, materialDescricao: string, jaUsados: string[]): string {
+  return `Gere ${quantidade} questões para o material abaixo. PARTE: ${parte}.
 Hoje: ${new Date().toLocaleDateString('pt-BR')} — a criança recebe um conjunto novo por dia, então varie em relação aos enunciados já usados.
 
 ## Material

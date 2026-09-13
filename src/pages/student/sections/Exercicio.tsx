@@ -68,7 +68,10 @@ export function Exercicio({ alvo, subject, ctx, xp, onExit }: Props) {
     pedindo.current = true
     setCarregando(questoes.length <= progresso.indice)
     setErro(null)
-    gerarLote(alvo, ctx)
+    gerarLote(alvo, ctx, (parciais) => {
+      setQuestoes(parciais)
+      setCarregando(false)
+    })
       .then((todas) => setQuestoes(todas))
       .catch((e) => setErro(mensagemDeErro(e, mascote.name)))
       .finally(() => {

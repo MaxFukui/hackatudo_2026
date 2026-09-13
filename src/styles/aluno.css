@@ -89,20 +89,11 @@
   70% { transform: translateY(1px) scale(0.97); }
   100% { transform: translateY(0) scale(1); }
 }
-/* Estrela dos pontos gira ao passar o mouse. */
-@keyframes spin-once {
-  to { transform: rotate(360deg); }
-}
 
 @utility animate-drift { animation: drift 24s ease-in-out infinite; }
 @utility animate-drift-slow { animation: drift 32s ease-in-out infinite reverse; }
 @utility animate-twinkle { animation: twinkle 2.6s ease-in-out infinite; transform-origin: center; }
 @utility animate-nav-bounce { animation: nav-bounce 0.5s var(--ease-spring) both; }
-@utility hover-spin {
-  @media (hover: hover) {
-    &:hover > .spin-target { animation: spin-once 0.6s var(--ease-standard); }
-  }
-}
 /* Pontilhado suave por cima do canvas: dá textura de "caderno" sem pesar. */
 @utility bg-dots {
   background-image: radial-gradient(var(--color-ink-200) 1px, transparent 1px);

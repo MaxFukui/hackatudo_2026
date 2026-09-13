@@ -8,8 +8,6 @@ import { Background } from './Background'
 interface Props<T extends string> {
   userName: string
   points: number
-  /** Demo do pitch: toque na pill de pontos dá XP. Some quando o backend entrar. */
-  onDemoXp?: () => void
   nav: NavItem<T>[]
   active: T
   onNavigate: (id: T) => void
@@ -43,7 +41,7 @@ function useSlidingPill<T extends string>(active: T) {
 
 // Casca da área do aluno. Diferente do AppShell (sidebar): a navegação fica na barra de cima,
 // como um app de criança — tudo à vista, um toque de distância. Celular: barra no rodapé.
-export function StudentShell<T extends string>({ userName, points, onDemoXp, nav, active, onNavigate, children }: Props<T>) {
+export function StudentShell<T extends string>({ userName, points, nav, active, onNavigate, children }: Props<T>) {
   const shownPoints = useCountUp(points)
   const [topList, topPill] = useSlidingPill(active)
   const [bottomList, bottomPill] = useSlidingPill(active)
@@ -92,18 +90,15 @@ export function StudentShell<T extends string>({ userName, points, onDemoXp, nav
           </nav>
 
           <div className="ml-auto flex items-center gap-2 md:gap-3">
-            <button
-              type="button"
-              onClick={onDemoXp}
-              title={onDemoXp ? 'Demo: +100 XP' : undefined}
-              aria-label={`${points} pontos${onDemoXp ? '. Demo: toque para ganhar 100 XP' : ''}`}
-              className="hover-spin inline-flex h-10 items-center gap-1.5 rounded-full border border-amarelo bg-amarelo-claro px-3.5 text-small font-semibold text-fg transition-[background-color,transform,box-shadow] duration-fast ease-standard hover:bg-amarelo active:scale-95"
+            <span
+              aria-label={`${points} pontos`}
+              className="inline-flex h-10 items-center gap-1.5 rounded-full border border-amarelo bg-amarelo-claro px-3.5 text-small font-semibold text-fg"
               data-numeric
             >
-              <span key={points} className="spin-target inline-block text-accent animate-pop" aria-hidden="true">★</span>
+              <span key={points} className="inline-block text-accent animate-pop" aria-hidden="true">★</span>
               <span>{shownPoints.toLocaleString('pt-BR')}</span>
               <span className="hidden sm:inline">pontos</span>
-            </button>
+            </span>
             <Avatar name={userName} size="sm" />
             <span className="hidden text-small text-fg-muted lg:inline">{userName}</span>
             <LogoutButton />
