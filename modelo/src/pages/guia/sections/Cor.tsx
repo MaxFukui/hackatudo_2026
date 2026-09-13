@@ -59,7 +59,7 @@ export function Cor() {
     <Section
       id="cor"
       title="Cor"
-      lead="Paleta pastel com dois pontos fortes. O escuro faz a ação; o laranja faz o destaque; os pastéis fazem fundo, nunca letra. Onde a paleta não segura texto, há um tom derivado da mesma cor, testado em contraste."
+      lead="Paleta pastel com dois pontos fortes — a mesma da logo. O escuro faz a ação; o laranja (o giz) faz o destaque; os pastéis (as letras) fazem fundo, nunca letra. Onde a paleta não segura texto, há um tom derivado da mesma cor, testado em contraste."
     >
       <Spec label="paleta · 11 cores" note="como recebida. Tokens com o nome original (bg-verde-agua, bg-laranja…). Nas páginas, prefira os papéis abaixo.">
         <div className="grid grid-cols-3 gap-2 sm:grid-cols-4 lg:grid-cols-6">

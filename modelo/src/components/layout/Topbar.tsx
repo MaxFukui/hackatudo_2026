@@ -2,7 +2,7 @@ import type { ReactNode } from 'react'
 import { Avatar } from '@/components/ui'
 
 interface TopbarProps {
-  /** Nome do produto ou logo. */
+  /** A logo: <Logo variant="wordmark" height={24} /> no desktop, mark no celular. */
   brand: ReactNode
   userName?: string
   /** Ações à direita (ex.: botão Sair). */

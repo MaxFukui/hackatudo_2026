@@ -1,4 +1,4 @@
-# modelo — base de estilo do Educa
+# modelo — base de estilo do Gizzi
 
 Kit que todas as áreas (landing, aluno, professor, diretor) usam como ponto de partida.
 Não tem feature nenhuma: só tokens, componentes, casca de layout e o guia.
@@ -19,6 +19,7 @@ src/
 │   ├── tokens.css     ← cor, tipografia, raio, sombra, medidas. O ÚNICO arquivo a editar para trocar a paleta.
 │   └── base.css       ← reset mínimo: fonte, foco de teclado, alvo de toque, reduced-motion
 ├── components/
+│   ├── brand/Logo.tsx ← a logo em SVG (full · mark · wordmark), cores em tokens
 │   ├── ui/            ← Button, Badge, Alert, Card, Grid, Stat, Tabs, Table, ProgressBar, Avatar,
 │   │                     Spinner/Skeleton, EmptyState, Modal, Toast
 │   │                     formulário: Field, Input, Textarea, Select, Checkbox, ChoiceGroup, Switch, Stepper,
@@ -27,6 +28,10 @@ src/
 ├── hooks/useTab.ts    ← seção ativa na URL (?tab=)
 └── pages/guia/        ← o guia: cada exemplo é o componente real
 ```
+
+## Marca
+
+**Gizzi** — um giz laranja que pisca; letras GIZZI nos pastéis da paleta. `<Logo variant="full|mark|wordmark" height>` em `src/components/brand/`, SVG com `var(--color-*)`: a logo e a interface saem da mesma caixa de cor. É uma reconstrução da arte; quando o vetor oficial existir, substitui só `Logo.tsx`. Regras (tamanho mínimo, respiro, fundos) na seção **Marca** do guia.
 
 ## Paleta
 

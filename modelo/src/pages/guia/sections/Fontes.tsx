@@ -14,7 +14,7 @@ const FACES = [
     role: 'display',
     cls: 'font-display',
     use: 'Só título e número grande na área do aluno e na landing.',
-    why: 'Arredondada e amigável sem virar “fonte de festa infantil”. Dá o tom para a criança. Nunca em texto corrido, nunca no professor/diretor.',
+    why: 'É a fonte da logo do Gizzi. Arredondada e amigável sem virar “fonte de festa infantil”. Nunca em texto corrido, nunca no professor/diretor.',
     weights: '500 · 600 · 700',
   },
   {

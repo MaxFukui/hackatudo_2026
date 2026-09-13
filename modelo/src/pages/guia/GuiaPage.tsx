@@ -1,14 +1,16 @@
+import { Logo } from '@/components/brand/Logo'
 import { Botoes, Cartoes, Feedback, Navegacao, Rotulos } from './sections/Componentes'
 import { Formulario } from './sections/Formulario'
 import { Fontes } from './sections/Fontes'
 import { Cor } from './sections/Cor'
 import { Principios } from './sections/Fundamentos'
 import { Receitas, Telas } from './sections/Layout'
+import { Marca } from './sections/Marca'
 import { Movimento } from './sections/Movimento'
 import { Acessibilidade, Escrita, Espaco, Forma, Icones } from './sections/Sistema'
 
 const INDEX = [
-  { group: 'Fundamentos', items: [['principios', 'Princípios'], ['cor', 'Cor'], ['fontes', 'Fontes'], ['espaco', 'Espaço e grade'], ['forma', 'Forma e elevação'], ['movimento', 'Movimento'], ['icones', 'Ícones'], ['escrita', 'Escrita'], ['acessibilidade', 'Acessibilidade'], ['layout', 'Telas: celular e desktop']] },
+  { group: 'Fundamentos', items: [['principios', 'Princípios'], ['marca', 'Marca'], ['cor', 'Cor'], ['fontes', 'Fontes'], ['espaco', 'Espaço e grade'], ['forma', 'Forma e elevação'], ['movimento', 'Movimento'], ['icones', 'Ícones'], ['escrita', 'Escrita'], ['acessibilidade', 'Acessibilidade'], ['layout', 'Telas: celular e desktop']] },
   { group: 'Componentes', items: [['button', 'Button'], ['badge', 'Badge e Alert'], ['card', 'Card e Stat'], ['field', 'Formulário'], ['tabs', 'Tabs e Table'], ['feedback', 'Progresso e estados'], ['receitas', 'Receitas de card']] },
 ]
 
@@ -63,7 +65,7 @@ export function GuiaPage() {
         </label>
 
         <header className="space-y-3">
-          <p className="text-caption font-medium text-fg-muted">Educa · modelo</p>
+          <Logo height={32} />
           <h1 className="text-display font-semibold">Guia de estilo</h1>
           <p className="max-w-prose text-body text-fg-muted">
             Base comum das quatro áreas do produto. Tokens em <code className="font-mono text-small text-fg">src/styles/tokens.css</code>, componentes em{' '}
@@ -72,6 +74,7 @@ export function GuiaPage() {
         </header>
 
         <Principios />
+        <Marca />
         <Cor />
         <Fontes />
         <Espaco />
