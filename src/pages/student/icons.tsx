@@ -35,6 +35,13 @@ export const IconChart = () => (
     <path d="M4 20V10M10 20V4M16 20v-8M22 20H2" />
   </Svg>
 )
+export const IconCalendar = () => (
+  <Svg>
+    <path d="M7 3v4M17 3v4M4 9h16" />
+    <rect x="4" y="5" width="16" height="16" rx="2" />
+    <path d="M8 13h.01M12 13h.01M16 13h.01M8 17h.01M12 17h.01" />
+  </Svg>
+)
 export const IconFlame = () => (
   <Svg>
     <path d="M12 3c1 4 5 5 5 10a5 5 0 0 1-10 0c0-2 1-3 2-4 0 2 1 3 2 3 0-3 0-6 1-9Z" />

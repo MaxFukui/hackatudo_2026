@@ -4,7 +4,7 @@ import { Toast } from '@/components/ui'
 import { useTab } from '@/hooks/useTab'
 import { Confetti } from '@/pages/student/components/Confetti'
 import { StudentShell } from '@/pages/student/components/StudentShell'
-import { IconBook, IconChart, IconChat, IconHome } from '@/pages/student/icons'
+import { IconBook, IconCalendar, IconChart, IconChat, IconHome } from '@/pages/student/icons'
 import { stageForXp } from '@/pages/student/lib/mascotes'
 import { StudentDetail } from './components/StudentDetail'
 import { CLASS_ACTIVITIES, CLASS_STUDENTS, TEACHER, type ClassActivity, type ClassStudent } from './data/turma'
@@ -13,15 +13,17 @@ import { Assistente } from './sections/Assistente'
 import { Atividades } from './sections/Atividades'
 import { RECORDS, type RecordKind, type TodayLog } from './lib/records'
 import { AulaHoje } from './sections/AulaHoje'
+import { Calendario } from './sections/Calendario'
 import { Turma } from './sections/Turma'
 
-const TABS = ['aula', 'turma', 'atividades', 'assistente'] as const
+const TABS = ['aula', 'turma', 'atividades', 'calendario', 'assistente'] as const
 type Tab = (typeof TABS)[number]
 
 const NAV: NavItem<Tab>[] = [
   { id: 'aula', label: 'Aula de hoje', icon: <IconHome /> },
   { id: 'turma', label: 'Turma', icon: <IconChart /> },
   { id: 'atividades', label: 'Atividades', icon: <IconBook /> },
+  { id: 'calendario', label: 'Calendário', icon: <IconCalendar /> },
   { id: 'assistente', label: 'Assistente', icon: <IconChat /> },
 ]
 
@@ -115,6 +117,7 @@ export function TeacherPage() {
       )}
       {tab === 'turma' && <Turma students={students} onOpen={setSelected} />}
       {tab === 'atividades' && <Atividades activities={activities} total={students.length} onCreate={createActivity} />}
+      {tab === 'calendario' && <Calendario />}
       {tab === 'assistente' && <Assistente students={students} />}
 
       <StudentDetail student={selected ? (students.find((s) => s.id === selected.id) ?? selected) : null} onClose={() => setSelected(null)} />
