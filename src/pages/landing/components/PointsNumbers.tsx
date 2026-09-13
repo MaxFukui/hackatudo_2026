@@ -20,7 +20,7 @@ export function PointsNumbers() {
       <Grid layout="stats" className="mt-10 md:mt-14">
         {POINTS.map((point) => (
           <div key={point.label} className="flex flex-col items-center rounded-lg border border-border bg-surface px-4 py-8 text-center md:py-10">
-            <p data-numeric className="text-hero font-display font-semibold text-accent">
+            <p data-numeric className="text-hero font-display font-semibold text-(--color-highlight)">
               {point.value}
             </p>
             <p className="mt-2 text-h2 font-semibold">{point.label}</p>

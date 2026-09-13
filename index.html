@@ -12,6 +12,10 @@
     />
     <link rel="canonical" href="__SITE_URL__/" />
     <meta name="theme-color" content="#141518" />
+    <script>
+      // Tema da landing salvo pelo botão ☀️/🌙 — aplicado antes de pintar para não piscar.
+      try { if (localStorage.getItem('gizzi.tema') === 'sol') document.documentElement.dataset.tema = 'sol' } catch (e) {}
+    </script>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 

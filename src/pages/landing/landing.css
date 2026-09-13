@@ -1,11 +1,19 @@
 /*
-  Tema escuro da landing (inspirado na Revolut Business) com a paleta do gizzi.
-  Só redefine os tokens semânticos do modelo dentro de .theme-escuro: os componentes
-  (Card, Input, ChoiceGroup, Button…) continuam os mesmos e passam a sair escuros.
-  As áreas logadas (aluno, professor, diretor) seguem claras.
-  Contraste medido sobre --color-canvas: fg 17:1 · fg-muted 11:1 · fg-subtle 5:1.
+  Temas da landing. Os componentes do modelo leem tokens semânticos (bg-canvas, text-fg…),
+  então trocar de tema é só redefinir esses tokens dentro de .landing.
+
+  ☀️ sol (html[data-tema="sol"]): paleta clara do modelo, sem redefinição.
+  🌙 escuro (padrão): inspirado na Revolut Business, com a paleta do gizzi.
+     Contraste sobre --color-canvas: fg 17:1 · fg-muted 11:1 · fg-subtle 5:1.
+
+  --color-highlight: número grande e destaque de texto. Laranja no escuro;
+  no claro o laranja não passa (2,2:1), então usa o tom derivado (4,9:1).
 */
-.theme-escuro {
+.landing {
+  --color-highlight: #a3561a;
+}
+
+html:not([data-tema="sol"]) .landing {
   color-scheme: dark;
 
   --color-canvas: #141518;          /* derivado do escuro, um degrau abaixo de ink-950 */
@@ -26,11 +34,18 @@
 
   --color-accent-soft: #3a2a1f;     /* derivado do laranja para fundo escuro */
   --color-accent-soft-fg: #fbdfcb;
+
+  --color-highlight: #ed9458;
 }
 
-.theme-escuro ::selection {
+html:not([data-tema="sol"]) .landing ::selection {
   color: #1f2024;
 }
+
+/* Logo: a versão certa para cada fundo. */
+.landing .logo-sol { display: none; }
+html[data-tema="sol"] .landing .logo-sol { display: block; }
+html[data-tema="sol"] .landing .logo-escuro { display: none; }
 
 /* Escala de título só da landing: maior que text-display, para o impacto do topo. */
 .text-hero {
@@ -43,10 +58,4 @@
   font-size: clamp(2rem, 4.5vw, 3.75rem);
   line-height: 1.08;
   letter-spacing: -0.015em;
-}
-
-/* Efeitos presos à rolagem escrevem transform/opacity direto no elemento.
-   will-change só enquanto a seção está na tela (o hook liga/desliga). */
-.scroll-fx {
-  transform-origin: 50% 0%;
 }

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Logo } from '@/components/brand/Logo'
+import { ThemeToggle } from './ThemeToggle'
 
 const LINKS = [
   { href: '#como-funciona', label: 'Como funciona' },
@@ -26,9 +27,11 @@ export function SiteHeader() {
     >
       <div className="mx-auto flex h-16 max-w-content items-center justify-between gap-4 px-4 md:px-8">
         <a href="/" aria-label="gizzi, página inicial" className="flex items-center">
-          <Logo onDark height={30} />
+          <Logo onDark height={30} className="logo-escuro" />
+          <Logo height={30} className="logo-sol" />
         </a>
         <nav aria-label="Principal" className="flex items-center gap-1">
+          <ThemeToggle />
           {LINKS.map((link) => (
             <a
               key={link.href}

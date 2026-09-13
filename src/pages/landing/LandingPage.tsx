@@ -2,7 +2,7 @@ import './landing.css'
 import { AudienceCards } from './components/AudienceCards'
 import { ClassroomTvPreview } from './components/ClassroomTvPreview'
 import { ConsciousTech } from './components/ConsciousTech'
-import { ExpandingVideo } from './components/ExpandingVideo'
+import { IntroCurtain } from './components/IntroCurtain'
 import { Faq } from './components/Faq'
 import { Footer } from './components/Footer'
 import { HatchStory } from './components/HatchStory'
@@ -13,16 +13,17 @@ import { PointsNumbers } from './components/PointsNumbers'
 import { SchoolVideo } from './components/SchoolVideo'
 import { SiteHeader } from './components/SiteHeader'
 
-// Landing escura com efeitos de rolagem (inspirada na Revolut Business) e a paleta do gizzi.
+// Landing com efeitos de rolagem (inspirada na Revolut Business). Tema 🌙 escuro por padrão, ☀️ sol no botão do topo.
 export function LandingPage() {
   return (
-    <div className="theme-escuro min-h-dvh overflow-x-clip bg-canvas text-fg">
+    <div className="landing min-h-dvh overflow-x-clip bg-canvas text-fg">
       <SiteHeader />
       <main>
         <HeroVideo />
         <LoginSection />
-        <ExpandingVideo />
-        <HatchStory />
+        <IntroCurtain>
+          <HatchStory />
+        </IntroCurtain>
         <PointsNumbers />
         <PetPlayground />
         <ClassroomTvPreview />

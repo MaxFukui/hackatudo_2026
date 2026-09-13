@@ -1,7 +1,5 @@
 import { useEffect, useRef, type RefObject } from 'react'
 
-export type ProgressMode = 'view' | 'sticky'
-
 const clamp = (n: number) => Math.min(1, Math.max(0, n))
 
 export function prefersReducedMotion(): boolean {
@@ -9,16 +7,14 @@ export function prefersReducedMotion(): boolean {
 }
 
 /**
- * Chama onProgress(p) com p de 0 a 1 enquanto o elemento está perto da tela.
- *  view   0 = topo do elemento entrando por baixo · 1 = base saindo por cima
- *  sticky 0 = seção alta encostou no topo · 1 = acabou de rolar a seção inteira
+ * Chama onProgress(p) com p de 0 a 1 enquanto o elemento está perto da tela:
+ * 0 = topo do elemento entrando por baixo · 1 = base saindo por cima.
  * Não gera render: o callback escreve estilo direto no DOM, a no máximo 1 vez por quadro.
  * Com prefers-reduced-motion não faz nada (a página fica no estado de repouso, legível).
  */
 export function useScrollProgress<T extends HTMLElement>(
   ref: RefObject<T | null>,
   onProgress: (p: number) => void,
-  mode: ProgressMode = 'view',
 ) {
   const callback = useRef(onProgress)
   useEffect(() => {
@@ -36,8 +32,7 @@ export function useScrollProgress<T extends HTMLElement>(
       frame = 0
       const rect = el.getBoundingClientRect()
       const vh = window.innerHeight
-      const p = mode === 'sticky' ? -rect.top / Math.max(1, rect.height - vh) : (vh - rect.top) / (vh + rect.height)
-      callback.current(clamp(p))
+      callback.current(clamp((vh - rect.top) / (vh + rect.height)))
     }
     const schedule = () => {
       if (visible && !frame) frame = requestAnimationFrame(measure)
@@ -62,5 +57,5 @@ export function useScrollProgress<T extends HTMLElement>(
       window.removeEventListener('resize', schedule)
       if (frame) cancelAnimationFrame(frame)
     }
-  }, [ref, mode])
+  }, [ref])
 }

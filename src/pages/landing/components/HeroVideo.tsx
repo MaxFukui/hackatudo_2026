@@ -9,7 +9,7 @@ export function HeroVideo() {
       <div aria-hidden="true" className="absolute inset-0 -z-10 bg-gradient-to-t from-canvas from-15% via-canvas/75 to-canvas/20 md:from-0% md:via-canvas/55" />
 
       <div className="mx-auto w-full max-w-content px-4 pt-32 pb-16 md:px-8 md:pb-24">
-        <p className="text-body font-medium text-accent">Sala de aula gamificada</p>
+        <p className="text-body font-medium text-(--color-highlight)">Sala de aula gamificada</p>
         <h1 id="hero-titulo" className="text-hero mt-3 max-w-4xl font-display font-semibold text-fg">
           Cuide do seu monstrinho. Cuide do seu aprendizado.
         </h1>

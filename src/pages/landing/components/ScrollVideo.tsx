@@ -5,6 +5,10 @@ interface ScrollVideoProps {
   video: LandingVideo
   /** Ocupa o pai inteiro (object-cover), sem borda: fundo do topo. */
   cover?: boolean
+  /** Recebe o tempo atual (s) a cada quadro enquanto o vídeo toca. */
+  onTime?: (seconds: number) => void
+  /** Classe do elemento <video>. */
+  videoClassName?: string
   className?: string
 }
 
@@ -12,10 +16,25 @@ interface ScrollVideoProps {
 // Sem áudio (navegador só deixa tocar sozinho se estiver mudo). Só baixa quando chega perto.
 // prefers-reduced-motion: não toca sozinho — fica a capa com o botão de play.
 // Botão de pausa sempre visível: conteúdo que se move por mais de 5s precisa poder parar (WCAG 2.2.2).
-export function ScrollVideo({ video, cover = false, className = '' }: ScrollVideoProps) {
+export function ScrollVideo({ video, cover = false, onTime, videoClassName, className = '' }: ScrollVideoProps) {
   const ref = useRef<HTMLVideoElement>(null)
   const userPaused = useRef(false)
   const [playing, setPlaying] = useState(false)
+  const timeCallback = useRef(onTime)
+  useEffect(() => {
+    timeCallback.current = onTime
+  })
+
+  // Enquanto toca, avisa o tempo a cada quadro (usado para sincronizar texto com o vídeo).
+  useEffect(() => {
+    const el = ref.current
+    if (!playing || !el || !timeCallback.current) return
+    let frame = requestAnimationFrame(function tick() {
+      timeCallback.current?.(el.currentTime)
+      frame = requestAnimationFrame(tick)
+    })
+    return () => cancelAnimationFrame(frame)
+  }, [playing])
 
   useEffect(() => {
     const el = ref.current
@@ -68,7 +87,7 @@ export function ScrollVideo({ video, cover = false, className = '' }: ScrollVide
     <div className={cover ? `absolute inset-0 ${className}` : `relative overflow-hidden rounded-lg border border-border bg-ink-900 ${className}`}>
       <video
         ref={ref}
-        className={cover ? 'block h-full w-full object-cover' : 'block h-auto w-full'}
+        className={videoClassName ?? (cover ? 'block h-full w-full object-cover' : 'block h-auto w-full')}
         width={video.width}
         height={video.height}
         poster={video.poster}
