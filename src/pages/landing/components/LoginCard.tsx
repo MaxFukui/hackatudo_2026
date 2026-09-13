@@ -1,16 +1,29 @@
 import { useState, type FormEvent } from 'react'
 import { useNavigate } from 'react-router'
-import { Button } from '@/components/ui'
+import { Button, Card, ChoiceGroup, Form, Input, type ChoiceOption } from '@/components/ui'
 import { useAuth } from '@/hooks/useAuth'
 import { HOME_BY_ROLE } from '@/lib/roles'
 import type { Role } from '@/types'
-import { RoleSwitcher } from './RoleSwitcher'
+
+type LoginRole = Exclude<Role, 'admin'>
+
+const ROLES: ChoiceOption<LoginRole>[] = [
+  { value: 'student', label: 'Aluno' },
+  { value: 'teacher', label: 'Professor' },
+  { value: 'director', label: 'Direção' },
+]
+
+const GREETING: Record<LoginRole, string> = {
+  student: 'Seu monstrinho está com saudade.',
+  teacher: 'Sua turma está esperando.',
+  director: 'O painel da escola está pronto.',
+}
 
 // Login simulado: escolhe o perfil e entra. Sem validação de senha no protótipo.
 export function LoginCard() {
   const { login } = useAuth()
   const navigate = useNavigate()
-  const [role, setRole] = useState<Role>('student')
+  const [role, setRole] = useState<LoginRole>('student')
 
   const onSubmit = (e: FormEvent) => {
     e.preventDefault()
@@ -19,20 +32,25 @@ export function LoginCard() {
   }
 
   return (
-    <form onSubmit={onSubmit} className="space-y-4 self-center rounded-2xl border border-slate-200 p-6 shadow-sm">
-      <h2 className="text-lg font-semibold">Entrar</h2>
-      <RoleSwitcher value={role} onChange={setRole} />
-      <label className="block space-y-1 text-sm">
-        <span className="text-slate-600">E-mail</span>
-        <input id="login-email" type="email" defaultValue="usuario@escola.edu.br" className="w-full rounded-lg border border-slate-300 px-3 py-2" />
-      </label>
-      <label className="block space-y-1 text-sm">
-        <span className="text-slate-600">Senha</span>
-        <input id="login-password" type="password" defaultValue="hacktudo" className="w-full rounded-lg border border-slate-300 px-3 py-2" />
-      </label>
-      <Button type="submit" className="w-full">
-        Entrar
-      </Button>
-    </form>
+    <div id="entrar" className="scroll-mt-4 self-start lg:mt-8">
+      <Card title="Entrar" description={GREETING[role]}>
+        <Form onSubmit={onSubmit}>
+          <ChoiceGroup name="role" label="Entrar como" options={ROLES} value={role} onChange={setRole} columns={3} />
+          <Input id="login-email" name="email" type="email" label="E-mail" defaultValue="usuario@escola.edu.br" />
+          <Input
+            id="login-password"
+            name="password"
+            type="password"
+            label="Senha"
+            autoComplete="current-password"
+            defaultValue="hacktudo"
+            hint="Protótipo: qualquer senha entra."
+          />
+          <Button type="submit" size="lg" className="w-full">
+            Entrar
+          </Button>
+        </Form>
+      </Card>
+    </div>
   )
 }

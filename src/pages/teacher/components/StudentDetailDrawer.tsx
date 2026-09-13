@@ -12,13 +12,13 @@ export function StudentDetailDrawer({ student, onClose }: StudentDetailDrawerPro
     <Modal open={student !== null} title={student?.name ?? ''} onClose={onClose}>
       {student && (
         <dl className="grid grid-cols-2 gap-3 text-sm">
-          <dt className="text-slate-500">Média</dt>
+          <dt className="text-fg-muted">Média</dt>
           <dd className="tabular-nums">{formatGrade(student.performance.averageGrade)}</dd>
-          <dt className="text-slate-500">Presença</dt>
+          <dt className="text-fg-muted">Presença</dt>
           <dd className="tabular-nums">{formatPercent(student.performance.attendanceRate)}</dd>
-          <dt className="text-slate-500">Participação</dt>
+          <dt className="text-fg-muted">Participação</dt>
           <dd className="tabular-nums">{formatPercent(student.performance.participationRate)}</dd>
-          <dt className="text-slate-500">Streak atual</dt>
+          <dt className="text-fg-muted">Streak atual</dt>
           <dd className="tabular-nums">{student.streak.current} dias</dd>
         </dl>
       )}

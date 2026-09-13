@@ -1,5 +1,6 @@
-import { AppShell } from '@/components/layout/AppShell'
-import { Spinner, type TabItem } from '@/components/ui'
+import { Logo } from '@/components/brand/Logo'
+import { AppShell, LogoutButton, type NavItem } from '@/components/layout'
+import { Spinner } from '@/components/ui'
 import { useAsync } from '@/hooks/useAsync'
 import { useTab } from '@/hooks/useTab'
 import { getStudent } from '@/services/students'
@@ -12,7 +13,7 @@ import { TutorTab } from './tabs/TutorTab'
 const TABS = ['home', 'activities', 'performance', 'streak', 'tutor'] as const
 type StudentTab = (typeof TABS)[number]
 
-const NAV: TabItem<StudentTab>[] = [
+const NAV: NavItem<StudentTab>[] = [
   { id: 'home', label: 'Início' },
   { id: 'activities', label: 'Atividades' },
   { id: 'performance', label: 'Desempenho' },
@@ -30,7 +31,7 @@ export function StudentPage() {
   if (loading || !student) return <Spinner />
 
   return (
-    <AppShell userName={student.name} nav={NAV} active={tab} onNavigate={setTab}>
+    <AppShell brand={<Logo height={28} />} topbarActions={<LogoutButton />} userName={student.name} nav={NAV} active={tab} onNavigate={setTab}>
       {tab === 'home' && <HomeTab student={student} />}
       {tab === 'activities' && <ActivitiesTab student={student} />}
       {tab === 'performance' && <PerformanceTab student={student} />}

@@ -25,7 +25,7 @@ export function AiEvaluationCard({ student }: { student: Student }) {
 function Section({ title, items }: { title: string; items: string[] }) {
   return (
     <div>
-      <h3 className="text-xs font-semibold uppercase tracking-wide text-slate-500">{title}</h3>
+      <h3 className="text-xs font-semibold uppercase tracking-wide text-fg-muted">{title}</h3>
       <ul className="mt-1 list-disc space-y-0.5 pl-5">
         {items.map((item) => (
           <li key={item}>{item}</li>

@@ -1,0 +1,161 @@
+/* Base global: o mínimo para tudo nascer coerente. Estilo de componente fica no componente. */
+@layer base {
+  html {
+    /* Nunca rola de lado; iOS não aumenta o texto sozinho ao girar a tela. */
+    overflow-x: clip;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    font-family: var(--font-sans);
+    font-size: 16px;
+    color: var(--color-fg);
+    background-color: var(--color-canvas);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    font-size: var(--text-body);
+    line-height: var(--text-body--line-height);
+    min-height: 100dvh;
+  }
+
+  /* Atkinson tem dígitos proporcionais por padrão; em tabela e métrica forçamos tabulares (tnum). */
+  table, [data-numeric] {
+    font-variant-numeric: tabular-nums lining-nums;
+  }
+
+  h1, h2, h3 {
+    text-wrap: balance;
+    font-weight: 600;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::placeholder {
+    color: var(--color-fg-subtle);
+  }
+
+  a {
+    text-underline-offset: 3px;
+    transition: color var(--duration-fast) var(--ease-standard), text-decoration-color var(--duration-fast) var(--ease-standard);
+  }
+
+  /* Desktop: barra de rolagem fina e discreta. */
+  @media (min-width: 48rem) {
+    * {
+      scrollbar-width: thin;
+      scrollbar-color: var(--color-border-strong) transparent;
+    }
+  }
+
+  /* Um único anel de foco, só para teclado. */
+  :focus-visible {
+    outline: 2px solid var(--color-focus);
+    outline-offset: 2px;
+  }
+
+  ::selection {
+    background-color: var(--color-amarelo);
+    color: var(--color-fg);
+  }
+
+  /* Toque: sem o flash cinza do WebKit (cada componente tem o próprio active:),
+     sem esperar 300ms pelo duplo-toque, sem zoom acidental. */
+  button, [role="button"], a, input, select, textarea, label {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Alvo mínimo de toque: 44px no celular, 40px no desktop. */
+  button, [role="button"], a.button {
+    min-height: 2.75rem;
+  }
+  @media (min-width: 48rem) {
+    button, [role="button"], a.button {
+      min-height: 2.5rem;
+    }
+  }
+
+  /* Inputs com menos de 16px fazem o iOS dar zoom ao focar. Aqui nunca ficam abaixo. */
+  input, select, textarea {
+    font-size: max(1rem, 1em);
+  }
+
+  /* Celular: títulos e números grandes encolhem um degrau. As classes continuam as mesmas. */
+  @media (max-width: 40rem) {
+    :root {
+      --text-display: 2rem;
+      --text-h1: 1.375rem;
+      --text-numeral: 1.625rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+/* ============ KEYFRAMES ============ */
+/* Só opacity e transform: roda no compositor, não trava o scroll do celular. */
+@keyframes rise {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes fade-out {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+@keyframes scale-in {
+  from { opacity: 0; transform: scale(0.96); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes scale-out {
+  from { opacity: 1; transform: none; }
+  to { opacity: 0; transform: scale(0.98); }
+}
+@keyframes sheet-up {
+  from { transform: translateY(100%); }
+  to { transform: none; }
+}
+@keyframes sheet-down {
+  from { transform: none; }
+  to { transform: translateY(100%); }
+}
+/* Recompensa e seleção: passa um pouco do tamanho e volta. */
+@keyframes pop {
+  0% { opacity: 0; transform: scale(0.6); }
+  60% { opacity: 1; transform: scale(1.08); }
+  100% { transform: scale(1); }
+}
+/* Skeleton: brilho que atravessa, em vez de piscar. */
+@keyframes shimmer {
+  from { background-position: 200% 0; }
+  to { background-position: -200% 0; }
+}
+
+/* Entrada escalonada: filhos de um grid/lista aparecem um após o outro (40ms). */
+@utility stagger {
+  & > * {
+    animation: rise var(--duration-enter) var(--ease-enter) both;
+    animation-delay: calc(var(--stagger-index, 0) * 40ms);
+  }
+}
+
+@utility scrollbar-thin {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-border-strong) transparent;
+}
+
+@utility scrollbar-none {
+  scrollbar-width: none;
+  &::-webkit-scrollbar { display: none; }
+}

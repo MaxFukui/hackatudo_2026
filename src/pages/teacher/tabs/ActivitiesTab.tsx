@@ -1,4 +1,4 @@
-import { PageHeader } from '@/components/layout/PageHeader'
+import { PageHeader } from '@/components/layout'
 import { Card, Spinner } from '@/components/ui'
 import { useAsync } from '@/hooks/useAsync'
 import { formatDate, formatGrade } from '@/lib/format'
@@ -16,11 +16,11 @@ export function ActivitiesTab({ teacherId }: { teacherId: string }) {
           {loading || !data ? (
             <Spinner />
           ) : (
-            <ul className="divide-y divide-slate-100">
+            <ul className="divide-y divide-border">
               {data.map((a) => (
                 <li key={a.id} className="flex justify-between py-2 text-sm">
                   <span>{a.title}</span>
-                  <span className="text-slate-500 tabular-nums">
+                  <span className="text-fg-muted tabular-nums">
                     média {formatGrade(a.averageScore)} · {formatDate(a.createdAt)}
                   </span>
                 </li>

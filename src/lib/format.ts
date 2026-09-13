@@ -12,11 +12,11 @@ export const PERFORMANCE_ORDER: PerformanceLevel[] = ['critical', 'attention', '
 
 // Classes Tailwind por nível — mantém a mesma cor em badges e gráficos.
 export const PERFORMANCE_COLOR: Record<PerformanceLevel, string> = {
-  critical: 'bg-red-500',
-  attention: 'bg-amber-500',
-  regular: 'bg-slate-400',
-  good: 'bg-emerald-500',
-  excellent: 'bg-indigo-500',
+  critical: 'bg-danger',
+  attention: 'bg-warning',
+  regular: 'bg-ink-300',
+  good: 'bg-success',
+  excellent: 'bg-info',
 }
 
 export function formatPercent(value: number): string {

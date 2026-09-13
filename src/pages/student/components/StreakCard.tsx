@@ -7,9 +7,9 @@ export function StreakCard({ streak }: { streak: StudentStreak }) {
     <Card title="Sequência">
       <div className="flex items-baseline gap-2">
         <span className="text-4xl font-bold tabular-nums">{streak.current}</span>
-        <span className="text-sm text-slate-500">dias seguidos · recorde {streak.best}</span>
+        <span className="text-sm text-fg-muted">dias seguidos · recorde {streak.best}</span>
       </div>
-      <p className="mt-1 text-sm text-slate-600 tabular-nums">{streak.points} pontos</p>
+      <p className="mt-1 text-sm text-fg-muted tabular-nums">{streak.points} pontos</p>
       <div className="mt-4">
         <XpBar xp={streak.xp} nextLevelXp={streak.nextLevelXp} level={streak.level} />
       </div>

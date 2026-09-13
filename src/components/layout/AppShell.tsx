@@ -1,24 +1,38 @@
 import type { ReactNode } from 'react'
-import type { TabItem } from '@/components/ui'
-import { Sidebar } from './Sidebar'
+import { Sidebar, type NavItem } from './Sidebar'
 import { Topbar } from './Topbar'
 
 interface AppShellProps<T extends string> {
-  userName: string
-  nav: TabItem<T>[]
+  brand: ReactNode
+  userName?: string
+  topbarActions?: ReactNode
+  nav: NavItem<T>[]
   active: T
   onNavigate: (id: T) => void
   children: ReactNode
 }
 
-// Casca comum das páginas logadas: topo + navegação lateral + conteúdo.
-export function AppShell<T extends string>({ userName, nav, active, onNavigate, children }: AppShellProps<T>) {
+// Casca de toda área logada. Celular: topbar + conteúdo + barra inferior. Desktop: topbar + sidebar + conteúdo.
+export function AppShell<T extends string>({ brand, userName, topbarActions, nav, active, onNavigate, children }: AppShellProps<T>) {
+  // Trocar de seção no celular: o conteúdo muda no mesmo lugar, então volta ao topo — senão a pessoa
+  // cai no meio da seção nova.
+  const navigate = (id: T) => {
+    onNavigate(id)
+    window.scrollTo({ top: 0 })
+  }
+
   return (
-    <div className="flex min-h-screen flex-col">
-      <Topbar userName={userName} />
-      <div className="flex flex-1 flex-col md:flex-row">
-        <Sidebar items={nav} active={active} onChange={onNavigate} />
-        <main className="flex-1 space-y-6 p-4 md:p-8">{children}</main>
+    <div className="flex min-h-dvh flex-col">
+      <Topbar brand={brand} userName={userName} actions={topbarActions} />
+      <div className="flex flex-1">
+        <Sidebar items={nav} active={active} onChange={navigate} />
+        {/* pb no celular reserva espaço para a barra inferior + safe area */}
+        <main className="min-w-0 flex-1 pb-[calc(5rem+env(safe-area-inset-bottom))] md:pb-0">
+          {/* key={active}: a seção nova entra com um fade-up curto — um quadro de transição, não um show. */}
+          <div key={String(active)} className="mx-auto w-full max-w-content animate-rise space-y-4 px-4 py-4 md:space-y-6 md:px-8 md:py-8">
+            {children}
+          </div>
+        </main>
       </div>
     </div>
   )

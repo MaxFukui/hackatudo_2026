@@ -1,26 +1,27 @@
 interface AvatarProps {
   name: string
   src?: string | null
-  size?: number
+  size?: 'sm' | 'md' | 'lg'
 }
 
-export function Avatar({ name, src, size = 36 }: AvatarProps) {
+const SIZE = { sm: 'size-7 text-caption', md: 'size-9 text-small', lg: 'size-12 text-body' }
+
+export function Avatar({ name, src, size = 'md' }: AvatarProps) {
   const initials = name
     .split(' ')
+    .filter(Boolean)
     .slice(0, 2)
-    .map((part) => part[0])
+    .map((p) => p[0])
     .join('')
     .toUpperCase()
 
-  const style = { width: size, height: size }
-
   return src ? (
-    <img src={src} alt={name} style={style} className="rounded-full object-cover" />
+    <img src={src} alt={name} className={`rounded-full object-cover ${SIZE[size]}`} />
   ) : (
     <span
-      style={style}
+      role="img"
       aria-label={name}
-      className="inline-flex items-center justify-center rounded-full bg-indigo-100 text-xs font-semibold text-indigo-700"
+      className={`inline-flex shrink-0 items-center justify-center rounded-full bg-primary-soft font-semibold text-primary-soft-fg ${SIZE[size]}`}
     >
       {initials}
     </span>

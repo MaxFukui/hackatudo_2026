@@ -1,7 +1,15 @@
+import { Logo } from '@/components/brand/Logo'
+
 export function Footer() {
   return (
-    <footer className="border-t border-slate-200 py-6 text-center text-sm text-slate-500">
-      Educa · Hackathon HACKTUDO 2026
+    <footer className="border-t border-border bg-surface">
+      <div className="mx-auto flex max-w-content flex-wrap items-center justify-between gap-2 px-4 py-6 text-small text-fg-muted md:px-8">
+        <div className="flex items-center gap-3">
+          <Logo height={24} />
+          <p>Cuide do seu monstrinho, cuide do seu aprendizado.</p>
+        </div>
+        <p>Hackathon HACKTUDO 2026</p>
+      </div>
     </footer>
   )
 }

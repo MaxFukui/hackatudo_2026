@@ -2,7 +2,7 @@ import { useCallback, useMemo, useState, type ReactNode } from 'react'
 import type { Role } from '@/types'
 import { AuthContext } from './auth-context'
 
-const STORAGE_KEY = 'educa.role'
+const STORAGE_KEY = 'gizzi.role'
 
 function readRole(): Role | null {
   try {

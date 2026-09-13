@@ -21,7 +21,7 @@ export function ClassSummary({ summary, performance }: ClassSummaryProps) {
       <dl className="mb-6 grid grid-cols-2 gap-4 sm:grid-cols-4">
         {stats.map((s) => (
           <div key={s.label}>
-            <dt className="text-xs text-slate-500">{s.label}</dt>
+            <dt className="text-xs text-fg-muted">{s.label}</dt>
             <dd className="text-2xl font-semibold tabular-nums">{s.value}</dd>
           </div>
         ))}

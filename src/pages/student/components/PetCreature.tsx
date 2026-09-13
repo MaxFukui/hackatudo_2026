@@ -10,7 +10,7 @@ export function PetCreature({ level }: { level: number }) {
     <Card title="Seu bichinho">
       <div className="flex flex-col items-center gap-3 py-4">
         <div
-          className="flex items-center justify-center rounded-full bg-indigo-100 text-indigo-700"
+          className="flex items-center justify-center rounded-full bg-primary-soft text-fg"
           style={{ width: size, height: size }}
           aria-label={`Bichinho nível ${level}`}
         >
