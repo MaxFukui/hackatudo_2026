@@ -34,13 +34,20 @@ export interface Alvo {
   descricao: string
 }
 
-// Chave exposta no browser: aceitável só no protótipo do hackathon. Em produção, um proxy
-// (/api/v1/exercicios) guarda a chave e chama a API; este arquivo passa a fazer fetch nele.
-const apiKey = import.meta.env.VITE_ANTHROPIC_API_KEY as string | undefined
+// A chave não está no browser: o servidor do Vite (vite.config.ts) recebe /api/anthropic,
+// coloca o ANTHROPIC_API_KEY do .env e repassa para a API. Aqui vai só um valor de mentira,
+// que o proxy substitui.
+const iaDisponivel = import.meta.env.VITE_IA_DISPONIVEL === true
 
-const client = apiKey ? new Anthropic({ apiKey, dangerouslyAllowBrowser: true }) : null
+const client = iaDisponivel
+  ? new Anthropic({
+      apiKey: 'via-proxy',
+      baseURL: `${typeof window === 'undefined' ? 'http://localhost' : window.location.origin}/api/anthropic`,
+      dangerouslyAllowBrowser: true,
+    })
+  : null
 // Recado de desenvolvedor vai para o console, nunca para a tela da criança.
-if (!client && import.meta.env.DEV) console.warn('[gizzi] VITE_ANTHROPIC_API_KEY não definida: exercícios em modo de demonstração. Veja .env.example.')
+if (!client && import.meta.env.DEV) console.warn('[gizzi] ANTHROPIC_API_KEY não definida no .env: exercícios em modo de demonstração. Veja .env.example e reinicie o npm run dev.')
 
 function cacheKey(alvoId: string) {
   return `gizzi.exercicios.${alvoId}`
