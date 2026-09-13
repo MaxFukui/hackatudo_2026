@@ -5,7 +5,10 @@ import { Faq } from './components/Faq'
 import { Footer } from './components/Footer'
 import { Hero } from './components/Hero'
 import { HowItWorks } from './components/HowItWorks'
+import { IntroVideo } from './components/IntroVideo'
 import { LoginCard } from './components/LoginCard'
+import { MonstersVideo } from './components/MonstersVideo'
+import { SchoolVideo } from './components/SchoolVideo'
 import { SiteHeader } from './components/SiteHeader'
 
 export function LandingPage() {
@@ -17,8 +20,11 @@ export function LandingPage() {
           <Hero />
           <LoginCard />
         </div>
+        <IntroVideo />
         <HowItWorks />
+        <MonstersVideo />
         <ClassroomTvPreview />
+        <SchoolVideo />
         <ConsciousTech />
         <Audiences />
         <Faq />
