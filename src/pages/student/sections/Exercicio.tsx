@@ -129,7 +129,7 @@ export function Exercicio({ alvo, subject, ctx, xp, onExit }: Props) {
       </div>
 
       {!iaDisponivel && (
-        <Alert tone="info">Modo offline: sem a chave da IA, as questões são de demonstração. Configure <code>VITE_ANTHROPIC_API_KEY</code> no <code>.env</code>.</Alert>
+        <Alert tone="info">Modo offline: sem a chave da IA, as questões são de demonstração. Configure <code>ANTHROPIC_API_KEY</code> no <code>.env</code> e reinicie o servidor.</Alert>
       )}
 
       {terminou ? (
